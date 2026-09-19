@@ -50,8 +50,12 @@ test('channel is the lowest core cell and the fill only reaches connected low gr
   ];
   const seed = 2; // the 10 m cell at the top of the valley
   const banded = floodFill(valley, 5, 5, seed, 12.5, 10 - 2.5);
-  assert.equal(banded.flooded, 4, 'only cells within one stage of the seed');
-  assert.ok(banded.maxDepth <= 5);
+  // Both 12 m banks along the valley and the 10 m and 8 m cells are within
+  // the band; the 6, 4 and 2 m cells below it stay out and are not "deep".
+  assert.equal(banded.flooded, 12);
+  assert.equal(banded.depths[12], 0);
+  assert.equal(banded.depths[22], 0);
+  assert.ok(Math.abs(banded.maxDepth - 4.5) < 1e-6);
 });
 
 test('computeFootprint scales with discharge and handles missing terrain', () => {
