@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-19T15:11:59.321Z",
-  "method": "Annual maxima of GloFAS v4 consolidated daily river discharge (Open-Meteo Flood API, models=consolidated_v4), complete years only, Gumbel distribution fitted by L-moments (stationary fit); return levels are the fitted quantiles. Same method family as the CEMS GloFAS thresholds (which use 1979-2022), so these are our estimates for this period, not the official GloFAS thresholds.",
+  "generatedAt": "2026-09-19T16:41:44.330Z",
+  "method": "Annual maxima of GloFAS v4 consolidated daily river discharge (Open-Meteo Flood API, models=consolidated_v4), complete years only (a year needs 360 valid days; the consolidated series is null before 1997), Gumbel distribution fitted by L-moments (stationary fit); return levels are the fitted quantiles. Same method family as the CEMS GloFAS thresholds (which use 1979-2022), so these are our estimates for this period, not the official GloFAS thresholds.",
   "source": "https://open-meteo.com/en/docs/flood-api (CC BY 4.0; GloFAS © Copernicus Emergency Management Service)",
   "model": "consolidated_v4",
   "period": {
-    "start": 1984,
+    "start": 1997,
     "end": 2024
   },
   "sites": {
@@ -18,65 +18,13 @@
         "lon": 34.092
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 894.36
@@ -191,14 +139,14 @@
         }
       ],
       "gumbel": {
-        "mu": 501.4312269439779,
-        "beta": 427.26219433888514
+        "mu": 999.5515948019104,
+        "beta": 165.99114808971788
       },
       "thresholds": {
-        "q1_5": 461.25,
-        "q2": 658.03,
-        "q5": 1142.3,
-        "q20": 1770.48
+        "q1_5": 983.94,
+        "q2": 1060.39,
+        "q5": 1248.53,
+        "q20": 1492.58
       }
     },
     "nzoia-webuye": {
@@ -211,65 +159,13 @@
         "lon": 34.77
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 789.68
@@ -384,14 +280,14 @@
         }
       ],
       "gumbel": {
-        "mu": 451.12389281940085,
-        "beta": 390.0643084075469
+        "mu": 898.8832906951413,
+        "beta": 158.3060108398942
       },
       "thresholds": {
-        "q1_5": 414.44,
-        "q2": 594.09,
-        "q5": 1036.2,
-        "q20": 1609.69
+        "q1_5": 883.99,
+        "q2": 956.9,
+        "q5": 1136.33,
+        "q20": 1369.08
       }
     },
     "nyando-ahero": {
@@ -404,65 +300,13 @@
         "lon": 34.917
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 429.53
@@ -577,14 +421,14 @@
         }
       ],
       "gumbel": {
-        "mu": 103.77198778879105,
-        "beta": 120.49723264501915
+        "mu": 204.67564889179548,
+        "beta": 85.10076380849266
       },
       "thresholds": {
-        "q1_5": 92.44,
-        "q2": 147.94,
-        "q5": 284.51,
-        "q20": 461.67
+        "q1_5": 196.67,
+        "q2": 235.87,
+        "q5": 332.32,
+        "q20": 457.44
       }
     },
     "sondu-miriu": {
@@ -597,65 +441,13 @@
         "lon": 34.98
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 472.15
@@ -770,14 +562,14 @@
         }
       ],
       "gumbel": {
-        "mu": 117.81303780649112,
-        "beta": 131.2425484664537
+        "mu": 232.74799911380507,
+        "beta": 87.82035846017467
       },
       "thresholds": {
-        "q1_5": 105.47,
-        "q2": 165.92,
-        "q5": 314.67,
-        "q20": 507.63
+        "q1_5": 224.49,
+        "q2": 264.94,
+        "q5": 364.47,
+        "q20": 493.59
       }
     },
     "yala-yala": {
@@ -790,65 +582,13 @@
         "lon": 34.53
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 347.34
@@ -963,14 +703,14 @@
         }
       ],
       "gumbel": {
-        "mu": 121.39414027835518,
-        "beta": 115.3983964936782
+        "mu": 241.17267211164344,
+        "beta": 59.1092004850655
       },
       "thresholds": {
-        "q1_5": 110.54,
-        "q2": 163.69,
-        "q5": 294.48,
-        "q20": 464.15
+        "q1_5": 235.61,
+        "q2": 262.84,
+        "q5": 329.83,
+        "q20": 416.74
       }
     },
     "kuja-migori": {
@@ -983,65 +723,13 @@
         "lon": 34.195
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 600.17
@@ -1156,14 +844,14 @@
         }
       ],
       "gumbel": {
-        "mu": 85.82383802168768,
-        "beta": 132.5595179126818
+        "mu": 167.03591437824485,
+        "beta": 122.44150903697853
       },
       "thresholds": {
-        "q1_5": 73.36,
-        "q2": 134.41,
-        "q5": 284.66,
-        "q20": 479.55
+        "q1_5": 155.52,
+        "q2": 211.91,
+        "q5": 350.69,
+        "q20": 530.71
       }
     },
     "mara-bridge": {
@@ -1176,65 +864,13 @@
         "lon": 35.034
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 305.9
@@ -1349,14 +985,14 @@
         }
       ],
       "gumbel": {
-        "mu": 89.68814468052678,
-        "beta": 115.29934316343177
+        "mu": 176.13793133106776,
+        "beta": 91.20185625330178
       },
       "thresholds": {
-        "q1_5": 78.84,
-        "q2": 131.95,
-        "q5": 262.63,
-        "q20": 432.15
+        "q1_5": 167.56,
+        "q2": 209.56,
+        "q5": 312.94,
+        "q20": 447.03
       }
     },
     "ewaso-ngiro-south-narok": {
@@ -1369,65 +1005,13 @@
         "lon": 35.867
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 297.54
@@ -1542,14 +1126,14 @@
         }
       ],
       "gumbel": {
-        "mu": 155.6858065940439,
-        "beta": 150.55588938499238
+        "mu": 309.12541256457945,
+        "beta": 79.85616658623883
       },
       "thresholds": {
-        "q1_5": 141.53,
-        "q2": 210.87,
-        "q5": 381.51,
-        "q20": 602.87
+        "q1_5": 301.62,
+        "q2": 338.39,
+        "q5": 428.9,
+        "q20": 546.31
       }
     },
     "perkerra-marigat": {
@@ -1562,65 +1146,13 @@
         "lon": 35.982
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 1302.17
@@ -1735,14 +1267,14 @@
         }
       ],
       "gumbel": {
-        "mu": 319.60995444801284,
-        "beta": 407.1556702431705
+        "mu": 627.9331008653883,
+        "beta": 319.1158799897087
       },
       "thresholds": {
-        "q1_5": 281.32,
-        "q2": 468.84,
-        "q5": 930.32,
-        "q20": 1528.94
+        "q1_5": 597.92,
+        "q2": 744.89,
+        "q5": 1106.59,
+        "q20": 1575.77
       }
     },
     "kerio-tot": {
@@ -1755,65 +1287,13 @@
         "lon": 35.66
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 146.57
@@ -1928,14 +1408,14 @@
         }
       ],
       "gumbel": {
-        "mu": 71.19832183196101,
-        "beta": 77.50490283268596
+        "mu": 140.7804766498453,
+        "beta": 50.21004299164117
       },
       "thresholds": {
-        "q1_5": 63.91,
-        "q2": 99.6,
-        "q5": 187.45,
-        "q20": 301.4
+        "q1_5": 136.06,
+        "q2": 159.18,
+        "q5": 216.09,
+        "q20": 289.91
       }
     },
     "turkwel-lodwar": {
@@ -1948,65 +1428,13 @@
         "lon": 35.597
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 747.17
@@ -2121,14 +1549,14 @@
         }
       ],
       "gumbel": {
-        "mu": 386.5045624666695,
-        "beta": 377.27678738036576
+        "mu": 767.1939711294497,
+        "beta": 203.8003302913347
       },
       "thresholds": {
-        "q1_5": 351.02,
-        "q2": 524.78,
-        "q5": 952.4,
-        "q20": 1507.09
+        "q1_5": 748.03,
+        "q2": 841.89,
+        "q5": 1072.88,
+        "q20": 1372.52
       }
     },
     "malewa-naivasha": {
@@ -2141,65 +1569,13 @@
         "lon": 36.4
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 247.89
@@ -2314,14 +1690,14 @@
         }
       ],
       "gumbel": {
-        "mu": 78.18050750087858,
-        "beta": 90.41635488264765
+        "mu": 154.22487970314666,
+        "beta": 63.53674759917562
       },
       "thresholds": {
-        "q1_5": 69.68,
-        "q2": 111.32,
-        "q5": 213.8,
-        "q20": 346.73
+        "q1_5": 148.25,
+        "q2": 177.51,
+        "q5": 249.53,
+        "q20": 342.94
       }
     },
     "nairobi-river-kariobangi": {
@@ -2334,65 +1710,13 @@
         "lon": 36.8955
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 95.61
@@ -2507,14 +1831,14 @@
         }
       ],
       "gumbel": {
-        "mu": 36.030303994251746,
-        "beta": 49.58908807448176
+        "mu": 70.5370941468355,
+        "beta": 41.81226019146132
       },
       "thresholds": {
-        "q1_5": 31.37,
-        "q2": 54.21,
-        "q5": 110.41,
-        "q20": 183.32
+        "q1_5": 66.6,
+        "q2": 85.86,
+        "q5": 133.25,
+        "q20": 194.73
       }
     },
     "ngong-mukuru": {
@@ -2527,65 +1851,13 @@
         "lon": 36.877
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 89.78
@@ -2700,14 +1972,14 @@
         }
       ],
       "gumbel": {
-        "mu": 34.664983474529606,
-        "beta": 47.378228299687315
+        "mu": 67.88676478793025,
+        "beta": 39.70294844199654
       },
       "thresholds": {
-        "q1_5": 30.21,
-        "q2": 52.03,
-        "q5": 105.73,
-        "q20": 175.39
+        "q1_5": 64.15,
+        "q2": 82.44,
+        "q5": 127.44,
+        "q20": 185.81
       }
     },
     "athi-athi-river": {
@@ -2720,65 +1992,13 @@
         "lon": 36.978
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 33.67
@@ -2893,14 +2113,14 @@
         }
       ],
       "gumbel": {
-        "mu": 9.019893279016246,
-        "beta": 18.21588983847114
+        "mu": 17.26350080495139,
+        "beta": 19.646777549621333
       },
       "thresholds": {
-        "q1_5": 7.31,
-        "q2": 15.7,
-        "q5": 36.34,
-        "q20": 63.12
+        "q1_5": 15.42,
+        "q2": 24.46,
+        "q5": 46.73,
+        "q20": 75.62
       }
     },
     "athi-fourteen-falls": {
@@ -2913,65 +2133,13 @@
         "lon": 37.183
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 62.24
@@ -3086,14 +2254,14 @@
         }
       ],
       "gumbel": {
-        "mu": 18.5025190596509,
-        "beta": 30.88530340456074
+        "mu": 35.853765386954024,
+        "beta": 30.04723479915371
       },
       "thresholds": {
-        "q1_5": 15.6,
-        "q2": 29.82,
-        "q5": 64.83,
-        "q20": 110.24
+        "q1_5": 33.03,
+        "q2": 46.87,
+        "q5": 80.92,
+        "q20": 125.1
       }
     },
     "tana-garissa": {
@@ -3106,65 +2274,13 @@
         "lon": 39.64
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 832.68
@@ -3279,14 +2395,14 @@
         }
       ],
       "gumbel": {
-        "mu": 279.5639867851976,
-        "beta": 430.9969799229075
+        "mu": 544.160308329316,
+        "beta": 397.5699798120695
       },
       "thresholds": {
-        "q1_5": 239.03,
-        "q2": 437.53,
-        "q5": 926.03,
-        "q20": 1559.71
+        "q1_5": 506.77,
+        "q2": 689.87,
+        "q5": 1140.49,
+        "q20": 1725.02
       }
     },
     "tana-hola": {
@@ -3299,65 +2415,13 @@
         "lon": 40.03
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 834.6
@@ -3472,14 +2536,14 @@
         }
       ],
       "gumbel": {
-        "mu": 279.22001257540495,
-        "beta": 430.1963721444236
+        "mu": 543.5091746003113,
+        "beta": 396.6531242136637
       },
       "thresholds": {
-        "q1_5": 238.76,
-        "q2": 436.89,
-        "q5": 924.49,
-        "q20": 1556.99
+        "q1_5": 506.2,
+        "q2": 688.89,
+        "q5": 1138.47,
+        "q20": 1721.65
       }
     },
     "tana-garsen": {
@@ -3492,65 +2556,13 @@
         "lon": 40.116
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 882.08
@@ -3665,14 +2677,14 @@
         }
       ],
       "gumbel": {
-        "mu": 281.8266959140667,
-        "beta": 436.47994242580575
+        "mu": 548.4288216363627,
+        "beta": 403.94365765322914
       },
       "thresholds": {
-        "q1_5": 240.78,
-        "q2": 441.8,
-        "q5": 936.52,
-        "q20": 1578.26
+        "q1_5": 510.44,
+        "q2": 696.48,
+        "q5": 1154.32,
+        "q20": 1748.22
       }
     },
     "ewaso-ngiro-north-archers-post": {
@@ -3685,65 +2697,13 @@
         "lon": 37.667
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 493.31
@@ -3858,14 +2818,14 @@
         }
       ],
       "gumbel": {
-        "mu": 140.32231371470056,
-        "beta": 172.08790174415648
+        "mu": 276.1432765331303,
+        "beta": 129.55099951552634
       },
       "thresholds": {
-        "q1_5": 124.14,
-        "q2": 203.39,
-        "q5": 398.44,
-        "q20": 651.46
+        "q1_5": 263.96,
+        "q2": 323.63,
+        "q5": 470.46,
+        "q20": 660.94
       }
     },
     "daua-mandera": {
@@ -3878,65 +2838,13 @@
         "lon": 41.867
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 574.44
@@ -4051,14 +2959,14 @@
         }
       ],
       "gumbel": {
-        "mu": 147.6566071377688,
-        "beta": 212.60173425776813
+        "mu": 288.4312537123294,
+        "beta": 186.192160984214
       },
       "thresholds": {
-        "q1_5": 127.66,
-        "q2": 225.58,
-        "q5": 466.55,
-        "q20": 779.13
+        "q1_5": 270.92,
+        "q2": 356.67,
+        "q5": 567.71,
+        "q20": 841.46
       }
     },
     "galana-sabaki": {
@@ -4071,65 +2979,13 @@
         "lon": 40.12
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 1347.96
@@ -4244,14 +3100,14 @@
         }
       ],
       "gumbel": {
-        "mu": 535.0127263126735,
-        "beta": 785.4513697930862
+        "mu": 1044.0605680811275,
+        "beta": 698.5624995155727
       },
       "thresholds": {
-        "q1_5": 461.14,
-        "q2": 822.89,
-        "q5": 1713.14,
-        "q20": 2867.96
+        "q1_5": 978.36,
+        "q2": 1300.09,
+        "q5": 2091.86,
+        "q20": 3118.93
       }
     },
     "tsavo-tsavo": {
@@ -4264,65 +3120,13 @@
         "lon": 38.47
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 850.14
@@ -4437,14 +3241,14 @@
         }
       ],
       "gumbel": {
-        "mu": 332.54024299076394,
-        "beta": 373.28061008631374
+        "mu": 656.7638978884066,
+        "beta": 252.36673143282036
       },
       "thresholds": {
-        "q1_5": 297.43,
-        "q2": 469.35,
-        "q5": 892.44,
-        "q20": 1441.26
+        "q1_5": 633.03,
+        "q2": 749.26,
+        "q5": 1035.3,
+        "q20": 1406.34
       }
     },
     "voi-voi": {
@@ -4457,65 +3261,13 @@
         "lon": 38.56
       },
       "period": {
-        "start": 1984,
+        "start": 1997,
         "end": 2024,
-        "dailyValues": 14976,
-        "years": 41,
+        "dailyValues": 10227,
+        "years": 28,
         "rejectedYears": []
       },
       "annualMaxima": [
-        {
-          "year": 1984,
-          "max": 0
-        },
-        {
-          "year": 1985,
-          "max": 0
-        },
-        {
-          "year": 1986,
-          "max": 0
-        },
-        {
-          "year": 1987,
-          "max": 0
-        },
-        {
-          "year": 1988,
-          "max": 0
-        },
-        {
-          "year": 1989,
-          "max": 0
-        },
-        {
-          "year": 1990,
-          "max": 0
-        },
-        {
-          "year": 1991,
-          "max": 0
-        },
-        {
-          "year": 1992,
-          "max": 0
-        },
-        {
-          "year": 1993,
-          "max": 0
-        },
-        {
-          "year": 1994,
-          "max": 0
-        },
-        {
-          "year": 1995,
-          "max": 0
-        },
-        {
-          "year": 1996,
-          "max": 0
-        },
         {
           "year": 1997,
           "max": 22.55
@@ -4630,14 +3382,14 @@
         }
       ],
       "gumbel": {
-        "mu": 3.4421482261195493,
-        "beta": 15.691050360021727
+        "mu": 5.99320069567997,
+        "beta": 21.325303613199537
       },
       "thresholds": {
-        "q1_5": 1.97,
-        "q2": 9.19,
-        "q5": 26.98,
-        "q20": 50.05
+        "q1_5": 3.99,
+        "q2": 13.81,
+        "q5": 37.98,
+        "q20": 69.33
       }
     }
   }
