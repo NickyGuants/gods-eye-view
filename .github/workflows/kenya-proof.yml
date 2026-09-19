@@ -6,6 +6,11 @@ name: Kenya live proof and screenshots
 
 on:
   workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Site to test (empty = build and serve this checkout)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -30,10 +35,14 @@ jobs:
         run: npm ci
 
       - name: Build and serve
+        if: ${{ inputs.base_url == '' }}
         run: |
           npm run build
           nohup npx vite preview --port 4173 > preview.log 2>&1 &
           for i in $(seq 1 30); do curl -sf http://localhost:4173/ > /dev/null && break; sleep 1; done
+
+      - name: Point at the site under test
+        run: echo "QA_BASE_URL=${{ inputs.base_url != '' && inputs.base_url || 'http://localhost:4173' }}" >> "$GITHUB_ENV"
 
       - name: Live browser QA (real APIs)
         run: |
