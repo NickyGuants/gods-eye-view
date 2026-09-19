@@ -338,8 +338,18 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
     optionOwner: 'flights',
   }),
   Object.freeze({
+    id: 'gdacs-flood-alerts',
+    token: '2',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
     id: 'kenya-county-rain',
     token: 'l',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'kenya-flood-footprints',
+    token: '4',
     disposition: 'enabled-only',
   }),
   Object.freeze({
@@ -355,6 +365,11 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
   Object.freeze({
     id: 'kenya-river-gauges',
     token: 'k',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'kmd-alerts',
+    token: '3',
     disposition: 'enabled-only',
   }),
   Object.freeze({ id: 'local-dams', token: 'q', disposition: 'enabled-only' }),
@@ -378,6 +393,11 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
   Object.freeze({
     id: 'military-installations',
     token: 'i',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'nasa-flood-water',
+    token: '1',
     disposition: 'enabled-only',
   }),
   Object.freeze({

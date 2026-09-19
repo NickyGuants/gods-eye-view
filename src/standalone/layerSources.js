@@ -15,6 +15,7 @@ import { createOverpassAlprSource } from '../layers/alpr/source.js';
 import { createFirmsSource } from '../layers/firms/source.js';
 import { createOpenMeteoFloodSource } from '../layers/kenyaRiverGauges/source.js';
 import { createOpenMeteoRainSource } from '../layers/kenyaCountyRain/source.js';
+import { createGdacsFloodSource } from '../layers/gdacsFloods/source.js';
 import { createReferenceSources } from '../sources/reference.js';
 export { createReferenceSources as createStandaloneReferenceSources } from '../sources/reference.js';
 
@@ -41,6 +42,7 @@ export function createStandaloneLayerSources() {
       cache: standaloneSnapCache(),
     }),
     kenyaCountyRain: createOpenMeteoRainSource(),
+    gdacsFloods: createGdacsFloodSource(),
   };
 }
 

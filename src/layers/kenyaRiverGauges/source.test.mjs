@@ -107,7 +107,9 @@ test('first snapshot probes, snaps to the wettest cell, caches, then fetches row
     },
   });
   const rows = await source.getSnapshot();
-  assert.equal(calls.length, 2, 'probe then snapshot');
+  assert.equal(calls.length, 3, 'probe, control run, ensemble members');
+  assert.equal(calls[2].searchParams.get('ensemble'), 'true');
+  assert.equal(calls[2].searchParams.get('past_days'), '0');
   assert.equal(rows.length, 2);
   const snapped = source.getSnappedSites();
   assert.ok(Math.abs(snapped.get('a').lat - -0.95) < 1e-9, 'snapped north');
@@ -116,7 +118,7 @@ test('first snapshot probes, snaps to the wettest cell, caches, then fetches row
   assert.equal(cache.size, 1, 'snap persisted');
 
   await source.getSnapshot();
-  assert.equal(calls.length, 3, 'second snapshot does not re-probe');
+  assert.equal(calls.length, 5, 'second snapshot does not re-probe');
 
   const warm = createOpenMeteoFloodSource({
     fetchImpl,
@@ -128,7 +130,7 @@ test('first snapshot probes, snaps to the wettest cell, caches, then fetches row
     },
   });
   await warm.getSnapshot();
-  assert.equal(calls.length, 4, 'a fresh source reads the cached snap');
+  assert.equal(calls.length, 7, 'a fresh source reads the cached snap');
 });
 
 test('a failed probe falls back to the raw sites instead of failing', async () => {

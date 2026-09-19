@@ -189,8 +189,9 @@ test('no unchanged Realtime tool definition drifts silently', () => {
     .slice(0, 16);
   // ALPR intentionally extends the two layer enums; the Kenya El Niño layers
   // extend them again (set_layer_visibility, show_data_layers_menu,
-  // analyst_query). Retain the complete pin.
-  assert.equal(digest, 'd6da620c50d3eb1b', 'an unchanged Realtime tool definition drifted');
+  // analyst_query), and the KMD/observed-flood/GDACS layers a third time.
+  // Retain the complete pin.
+  assert.equal(digest, 'ee8adedad41a0ccc', 'an unchanged Realtime tool definition drifted');
 });
 
 test('Radio volume and mission speed share the Sharpen slider visual language', () => {

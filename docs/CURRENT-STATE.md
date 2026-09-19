@@ -3964,6 +3964,37 @@ the globe is hidden by Google 3D Tiles. `kenya-matatu-routes` and
 `localGeojsonCore.js`. Registry tokens: k, l, o, v, y. Browser proof:
 `scripts/qa-kenya.mjs` (fixtures by default, `QA_KENYA_LIVE=1` for real APIs).
 
+Second pass (19 Sep 2026). `kenya-river-gauges` classifies by return-level
+exceedance: `returnPeriods.js` (Gumbel by L-moments) and `thresholds.json`
+(Q1.5/Q2/Q5/Q20 per site from the GloFAS v4 consolidated reanalysis, complete
+years 1997–2024 since the series is null before 1997, generated offline by
+`scripts/kenya-gauge-thresholds.mjs`, cells frozen so the source requests them
+directly and skips the probe); `records.js` reads the 50
+`river_discharge_memberNN` series (`ensemble=true`, a second call for the
+forecast days only, merged by date; a failed ensemble call leaves rows
+`unrated`), takes each member's 10-day
+maximum (CEMS reporting-point rule), assigns the highest level whose
+exceedance share is ≥30% (`PROB_ALERT`), times it by the first day 30% of
+members have crossed, requires ≥50% member coverage (`MIN_MEMBER_COVERAGE`), bands
+`unknown | unrated | normal | watch | moderate | high | severe`; an ensemble
+max alone leaves a row `unrated`. `src/layers/gibsOverlay/` is the shared GIBS
+WMTS overlay factory (IMERG keeps its own module for now); `nasaFloodWater/`
+adds `nasa-flood-water` (MODIS/VIIRS Combined Flood, Level9, dated TIME).
+`gdacsFloods/` fetches the GDACS event list (CORS-open) and filters to East
+Africa. `kmdAlerts/` parses KMD CAP 1.2 (`cap.js`, regex, shared with
+`scripts/fetch-kenya-feeds.mjs`, which writes `public/data/kenya/kmd-cap.json`
+only on a complete refresh; the Pages workflow runs it hourly on a cron and on
+push), resolves `references` so Updates/Cancels supersede, and draws warning
+polygons (active solid, expired within 30 days faded). `kenyaFloodFootprints/` (`model.js` pure: Andreadis 2013 bankfull depth/width,
+stage(Q), lowest-core-cell channel, 4-connected flood fill; `index.js`:
+`sampleTerrainMostDetailed` on a 31×31 ±3 km grid per rated site, cached per
+session, two scenarios (central = ensemble median peak, upper = max) rendered
+as one `Cesium.Primitive` of extruded `RectangleGeometry` water columns with
+per-instance depth colour; shares the flood source with the sites layer;
+token 4). `kenyaCountyRain` joins `county_population_2019.json` and treats
+all-null forecasts as `unknown`. Registry tokens 1, 2, 3; schema pins
+re-derived; `qa-kenya.mjs` covers all eight layers.
+
 The fork deploys to GitHub Pages from `kenya-el-nino-2026` through
 `.github/workflows/deploy-pages.yml`: `vite build --base=/gods-eye-view/`, the
 `vite-plugin-cesium` output moved from `dist/gods-eye-view/cesium/` to

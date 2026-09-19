@@ -8,6 +8,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [kenya-el-nino-2026]
+  schedule:
+    # Hourly: refresh the same-origin feed extracts (KMD CAP warnings) and
+    # republish. The feeds have no CORS header, so the browser cannot read
+    # them directly; this is the keyless server-side cache.
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -43,6 +48,11 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Refresh same-origin feed extracts (KMD CAP)
+        # A feed outage must not block a deploy: the committed extract stays
+        # and carries its own fetchedAt, which the layer shows as stale.
+        run: node scripts/fetch-kenya-feeds.mjs || echo "::warning::feed refresh failed; shipping the committed extract"
 
       - name: Build with the Pages base path
         run: npx vite build --base="$PAGES_BASE"

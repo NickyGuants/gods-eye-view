@@ -25,6 +25,10 @@ import { createBhoteKoshiLocatorLayer } from '../data/bhoteKoshiLocator.js';
 import { createApplicationKenyaRiverGauges } from './layers/kenyaRiverGauges.js';
 import { createApplicationKenyaCountyRain } from './layers/kenyaCountyRain.js';
 import { createApplicationNasaImerg } from './layers/nasaImerg.js';
+import { createApplicationNasaFloodWater } from './layers/nasaFloodWater.js';
+import { createApplicationGdacsFloods } from './layers/gdacsFloods.js';
+import { createApplicationKmdAlerts } from './layers/kmdAlerts.js';
+import { createApplicationKenyaFloodFootprints } from './layers/kenyaFloodFootprints.js';
 import { createKenyaLocalLayers } from '../data/kenyaLocal.js';
 
 const SOURCE_METHODS = Object.freeze({
@@ -50,6 +54,7 @@ const SOURCE_METHODS = Object.freeze({
   cables: ['fetch'],
   kenyaRiverGauges: ['getSnapshot'],
   kenyaCountyRain: ['getSnapshot'],
+  gdacsFloods: ['getSnapshot'],
 });
 
 /** Construct the current catalog without choosing any source provider.
@@ -139,6 +144,12 @@ export function createApplicationCatalog({
         createApplicationKenyaRiverGauges({ source: sources.kenyaRiverGauges }),
         createApplicationKenyaCountyRain({ source: sources.kenyaCountyRain }),
         createApplicationNasaImerg(),
+        createApplicationNasaFloodWater(),
+        createApplicationGdacsFloods({ source: sources.gdacsFloods }),
+        createApplicationKmdAlerts(),
+        createApplicationKenyaFloodFootprints({
+          source: sources.kenyaRiverGauges,
+        }),
         ...createKenyaLocalLayers(localGeoJsonServices),
         createApplicationFirms({
           surface,

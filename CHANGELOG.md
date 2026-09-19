@@ -1,5 +1,22 @@
 # Changelog
 
+- Kenya El Niño 2026, second pass (Claude + Codex review): river sites now
+  report modelled flood potential against return-level thresholds derived from
+  the GloFAS reanalysis 1997–2024 (`scripts/kenya-gauge-thresholds.mjs`,
+  bundled `thresholds.json`, cells frozen) using the CEMS reporting-point rule
+  (30% of the 50 ensemble members peak over Q1.5/Q2/Q5/Q20 within 10 days),
+  never from an ensemble max; nulls
+  are "data unavailable", not steady or dry. Three new layers in the group: KMD
+  official CAP warnings from a same-origin hourly extract
+  (`scripts/fetch-kenya-feeds.mjs`, Pages cron), NASA MODIS/VIIRS observed flood
+  water (shared GIBS overlay factory), and GDACS flood alerts for East Africa.
+  A 3D Flood Footprints layer samples the terrain mesh around each site,
+  lifts a water surface by the stage the ensemble peaks imply (Andreadis et
+  al. 2013 hydraulic geometry, Q2 as bankfull) and floods the connected low
+  ground, drawn as water columns. County rainfall carries 2019 census
+  residents per county. Landing link with
+  every Kenya layer on in KENYA.md and the README.
+
 - Deploy the Kenya El Niño 2026 fork to GitHub Pages in keyless mode
   (`.github/workflows/deploy-pages.yml`, base path `/gods-eye-view/`, Cesium
   static assets moved under the served root). Live verification against the

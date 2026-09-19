@@ -1,0 +1,71 @@
+name: Regenerate Kenya river thresholds
+
+# Pulls the GloFAS v4 consolidated reanalysis from the Open-Meteo Flood API
+# (heavy history calls that a laptop IP gets rate-limited on), fits the
+# return levels and commits src/layers/kenyaRiverGauges/thresholds.json.
+# Run on demand, or monthly so a new complete year joins the fit.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 2 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kenya-thresholds
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24.14.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Fit return levels from the reanalysis
+        run: node scripts/kenya-gauge-thresholds.mjs
+
+      - name: Check the fit is complete
+        run: |
+          node -e '
+            const d = JSON.parse(require("fs").readFileSync("src/layers/kenyaRiverGauges/thresholds.json", "utf8"));
+            const bad = Object.entries(d.sites).filter(([, v]) => !v.thresholds || v.period.years < 25 || v.annualMaxima.some((a) => a.max === 0));
+            if (bad.length) { console.error("incomplete:", bad.map(([k]) => k)); process.exit(1); }
+            console.log(Object.keys(d.sites).length, "sites,", d.period.start, "-", d.period.end);
+          '
+
+      - name: Format
+        run: npm run format
+
+      - name: Upload the fit as an artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kenya-thresholds
+          path: src/layers/kenyaRiverGauges/thresholds.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- src/layers/kenyaRiverGauges/thresholds.json; then
+            echo "thresholds unchanged"; exit 0
+          fi
+          git add src/layers/kenyaRiverGauges/thresholds.json
+          git commit -m "Regenerate Kenya river return-level thresholds from the GloFAS reanalysis"
+          git push

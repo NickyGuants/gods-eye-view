@@ -43,20 +43,56 @@ function floodFixture(url) {
         ? base + (d % 3)
         : base * (1 + (surge - 1) * ((d - past + 1) / forecast)),
     );
+    const daily = {
+      time,
+      river_discharge: series,
+      river_discharge_mean: series,
+      river_discharge_max: series.map((v) => v * 1.15),
+      river_discharge_min: series.map((v) => v * 0.85),
+    };
+    if (url.searchParams.get('ensemble') === 'true') {
+      // 51 members: a site-dependent share of them surge far above the base.
+      const surging = i % 3 === 0 ? 40 : i % 3 === 1 ? 20 : 4;
+      for (let m = 1; m <= 51; m++) {
+        daily[`river_discharge_member${String(m).padStart(2, '0')}`] =
+          series.map((v, d) => (d >= past && m <= surging ? v * 40 : v));
+      }
+    }
     return {
       latitude: lat,
       longitude: lons[i],
       location_id: i,
       daily_units: { river_discharge: 'm³/s' },
-      daily: {
-        time,
-        river_discharge: series,
-        river_discharge_mean: series,
-        river_discharge_max: series.map((v) => v * 1.15),
-        river_discharge_min: series.map((v) => v * 0.85),
-      },
+      daily,
     };
   });
+}
+
+function gdacsFixture() {
+  return {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [39.6, -0.45] },
+        properties: {
+          eventtype: 'FL',
+          eventid: 1102604,
+          episodeid: 3,
+          name: 'Flood in Kenya',
+          country: 'Kenya',
+          iso3: 'KEN',
+          alertlevel: 'Orange',
+          iscurrent: 'true',
+          fromdate: '2026-09-01T00:00:00',
+          todate: '2026-09-18T00:00:00',
+          datemodified: '2026-09-18T06:00:00',
+          url: { report: 'https://www.gdacs.org/report.aspx?eventid=1102604' },
+          affectedcountries: [{ iso3: 'KEN' }],
+        },
+      },
+    ],
+  };
 }
 
 function rainFixture(url) {
@@ -88,11 +124,16 @@ const browser = await puppeteer.launch({
 const page = await browser.newPage();
 let failures = 0;
 const errors = [];
-const requests = { flood: 0, rain: 0, gibs: 0 };
+const requests = { flood: 0, rain: 0, gibs: 0, gdacs: 0 };
+const floodUrls = [];
 page.on('pageerror', (error) => errors.push(error.message));
 page.on('console', (message) => {
   const text = message.text();
-  if (/KenyaRiverGauges|KenyaCountyRain|NasaImerg|kenya-/.test(text))
+  if (
+    /KenyaRiverGauges|KenyaFloodFootprints|KenyaCountyRain|NasaImerg|NasaFloodWater|GdacsFloods|KmdAlerts|kenya-/.test(
+      text,
+    )
+  )
     console.log('  [page]', text);
 });
 const check = (name, passed) => {
@@ -105,6 +146,7 @@ page.on('request', (request) => {
   const url = new URL(request.url());
   if (url.hostname === 'flood-api.open-meteo.com') {
     requests.flood++;
+    floodUrls.push(url);
     if (LIVE) return request.continue();
     return request.respond({
       status: 200,
@@ -132,6 +174,17 @@ page.on('request', (request) => {
       body: TINY_PNG,
     });
   }
+  if (url.hostname === 'www.gdacs.org') {
+    requests.gdacs++;
+    if (LIVE) return request.continue();
+    return request.respond({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: JSON.stringify(gdacsFixture()),
+    });
+  }
+  if (url.hostname === 'terrain.reearth.land') return request.continue();
   if (url.hostname === 'localhost' || url.hostname === '127.0.0.1')
     return request.continue();
   // Everything else (basemaps, ion, google) is offline in this proof.
@@ -150,9 +203,13 @@ try {
   const registry = await page.evaluate(() => {
     const manager = window.__godsEyeView.dataManager;
     const ids = [
+      'kmd-alerts',
       'kenya-river-gauges',
+      'kenya-flood-footprints',
       'kenya-county-rain',
       'nasa-imerg-rain',
+      'nasa-flood-water',
+      'gdacs-flood-alerts',
       'kenya-flood-hotspots',
       'kenya-matatu-routes',
     ];
@@ -210,8 +267,12 @@ try {
   );
   check('river gauges expose analyst records', gauges.analyst > 0);
   check(
-    `flood API called (${requests.flood}×: probe + snapshot)`,
-    requests.flood >= 2,
+    `flood API called (${requests.flood}×, bundled cells so no probe)`,
+    requests.flood >= 1,
+  );
+  check(
+    'flood snapshot asks for the 51 ensemble members',
+    floodUrls.some((u) => u.searchParams.get('ensemble') === 'true'),
   );
 
   const gaugeScene = await page.evaluate(() => {
@@ -239,8 +300,54 @@ try {
     gaugeScene.severities.length >= 2,
   );
   check(
+    'no site is classified from an ensemble max alone (rated rows carry members)',
+    gaugeScene.severities.every((s) =>
+      [
+        'unknown',
+        'unrated',
+        'normal',
+        'watch',
+        'moderate',
+        'high',
+        'severe',
+      ].includes(s),
+    ),
+  );
+  check(
     'every gauge carries a click readout model',
     gaugeScene.withModel === gaugeScene.entities,
+  );
+
+  const footprints = await enableAndCount('kenya-flood-footprints', hasCount);
+  check(
+    `3D flood footprints computed (${footprints.count} sites; ${footprints.status}; error: ${footprints.error})`,
+    footprints.enabled && footprints.count >= 1 && !footprints.error,
+  );
+  const footprintScene = await page.evaluate(() => {
+    const viewer = window.__godsEyeView.viewer;
+    const prims = viewer.scene.primitives;
+    let volumes = 0;
+    for (let i = 0; i < prims.length; i++) {
+      const p = prims.get(i);
+      if (
+        p?.geometryInstances?.[0]?.id?.startsWith?.('kenya-flood-footprints:')
+      )
+        volumes += p.geometryInstances.length;
+    }
+    const rec =
+      window.__godsEyeView.dataManager.layers
+        .get('kenya-flood-footprints')
+        ?.module?.getAnalystRecords?.(50) || [];
+    return {
+      volumes,
+      sampled: rec.reduce((a, r) => a + r.terrainSampled, 0),
+      cells: rec.reduce((a, r) => a + r.gridCells, 0),
+    };
+  });
+  check(
+    `footprint water volumes in the scene (${footprintScene.volumes}) from ${footprintScene.sampled}/${footprintScene.cells} terrain samples`,
+    footprintScene.volumes > 0 &&
+      footprintScene.sampled > footprintScene.cells * 0.9,
   );
 
   const rain = await enableAndCount('kenya-county-rain', hasCount);
@@ -304,6 +411,40 @@ try {
     `  globe shown: ${imergScene.globeShown}, status: ${imerg.status}, layers: ${imergScene.seen.join(' | ')}`,
   );
 
+  const floodWater = await enableAndCount('nasa-flood-water', (layerId) => {
+    const stats = window.__godsEyeView.dataManager.layers
+      .get(layerId)
+      ?.module?.getStats?.();
+    return (stats?.count || 0) > 0;
+  });
+  check(
+    `observed flood water overlay enabled (slot ${floodWater.status})`,
+    floodWater.enabled && floodWater.count === 1,
+  );
+
+  const gdacs = await enableAndCount('gdacs-flood-alerts', (layerId) => {
+    const stats = window.__godsEyeView.dataManager.layers
+      .get(layerId)
+      ?.module?.getStats?.();
+    return Boolean(stats?.lastUpdate) || Boolean(stats?.error);
+  });
+  check(
+    `GDACS flood alerts loaded (${gdacs.count} events, error: ${gdacs.error})`,
+    gdacs.enabled && !gdacs.error,
+  );
+  check(`GDACS called (${requests.gdacs}×)`, requests.gdacs >= 1);
+
+  const kmd = await enableAndCount('kmd-alerts', (layerId) => {
+    const stats = window.__godsEyeView.dataManager.layers
+      .get(layerId)
+      ?.module?.getStats?.();
+    return Boolean(stats?.lastUpdate) || Boolean(stats?.error);
+  });
+  check(
+    `KMD warnings extract loaded (${kmd.count} polygons; ${kmd.status}; error: ${kmd.error})`,
+    kmd.enabled && !kmd.error,
+  );
+
   const hotspots = await enableAndCount('kenya-flood-hotspots', hasCount);
   check(
     `flood hotspots loaded (${hotspots.count}, error: ${hotspots.error})`,
@@ -320,9 +461,13 @@ try {
     const manager = window.__godsEyeView.dataManager;
     const viewer = window.__godsEyeView.viewer;
     for (const id of [
+      'kmd-alerts',
       'kenya-river-gauges',
+      'kenya-flood-footprints',
       'kenya-county-rain',
       'nasa-imerg-rain',
+      'nasa-flood-water',
+      'gdacs-flood-alerts',
       'kenya-flood-hotspots',
       'kenya-matatu-routes',
     ]) {
@@ -342,7 +487,10 @@ try {
     await manager.setEnabled('kenya-river-gauges', true);
     return { imerg, gaugesHidden };
   });
-  check('IMERG imagery removed on disable', after.imerg === 0);
+  check(
+    'GIBS imagery (IMERG and flood water) removed on disable',
+    after.imerg === 0,
+  );
   check('gauge data source hidden on disable', after.gaugesHidden);
   await page
     .waitForFunction(hasCount, { timeout: 60000 }, 'kenya-river-gauges')
@@ -358,7 +506,7 @@ try {
   );
 
   const kenyaErrors = errors.filter((e) =>
-    /kenya|imerg|open-meteo|gibs/i.test(e),
+    /kenya|imerg|open-meteo|gibs|gdacs|kmd/i.test(e),
   );
   check(
     `no page errors from the Kenya layers (${kenyaErrors.length})`,

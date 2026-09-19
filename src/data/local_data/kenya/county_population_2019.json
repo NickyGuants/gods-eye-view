@@ -1,0 +1,288 @@
+{
+ "source": "KNBS 2019 Kenya Population and Housing Census, Volume I (via Wikipedia, Counties of Kenya)",
+ "licence": "KNBS open data; figures are public statistics",
+ "counties": [
+  {
+   "code": "001",
+   "name": "Mombasa",
+   "population2019": 1208333,
+   "areaKm2": 212.5
+  },
+  {
+   "code": "002",
+   "name": "Kwale",
+   "population2019": 866820,
+   "areaKm2": 8270.3
+  },
+  {
+   "code": "003",
+   "name": "Kilifi",
+   "population2019": 1453787,
+   "areaKm2": 12245.9
+  },
+  {
+   "code": "004",
+   "name": "Tana River",
+   "population2019": 315943,
+   "areaKm2": 35375.8
+  },
+  {
+   "code": "005",
+   "name": "Lamu",
+   "population2019": 143920,
+   "areaKm2": 6497.7
+  },
+  {
+   "code": "006",
+   "name": "Taita-Taveta",
+   "population2019": 340671,
+   "areaKm2": 17083.9
+  },
+  {
+   "code": "007",
+   "name": "Garissa",
+   "population2019": 841353,
+   "areaKm2": 45720.2
+  },
+  {
+   "code": "008",
+   "name": "Wajir",
+   "population2019": 781263,
+   "areaKm2": 55840.6
+  },
+  {
+   "code": "009",
+   "name": "Mandera",
+   "population2019": 867457,
+   "areaKm2": 25797.7
+  },
+  {
+   "code": "010",
+   "name": "Marsabit",
+   "population2019": 459785,
+   "areaKm2": 66923.1
+  },
+  {
+   "code": "011",
+   "name": "Isiolo",
+   "population2019": 268002,
+   "areaKm2": 25336.1
+  },
+  {
+   "code": "012",
+   "name": "Meru",
+   "population2019": 1545714,
+   "areaKm2": 7003.1
+  },
+  {
+   "code": "013",
+   "name": "Tharaka-Nithi",
+   "population2019": 393177,
+   "areaKm2": 2609.5
+  },
+  {
+   "code": "014",
+   "name": "Embu",
+   "population2019": 608599,
+   "areaKm2": 2555.9
+  },
+  {
+   "code": "015",
+   "name": "Kitui",
+   "population2019": 1136187,
+   "areaKm2": 24385.1
+  },
+  {
+   "code": "016",
+   "name": "Machakos",
+   "population2019": 1421932,
+   "areaKm2": 5952.9
+  },
+  {
+   "code": "017",
+   "name": "Makueni",
+   "population2019": 987653,
+   "areaKm2": 8008.9
+  },
+  {
+   "code": "018",
+   "name": "Nyandarua",
+   "population2019": 638289,
+   "areaKm2": 3107.7
+  },
+  {
+   "code": "019",
+   "name": "Nyeri",
+   "population2019": 759164,
+   "areaKm2": 2361.0
+  },
+  {
+   "code": "020",
+   "name": "Kirinyaga",
+   "population2019": 610411,
+   "areaKm2": 1205.4
+  },
+  {
+   "code": "021",
+   "name": "Murang'a",
+   "population2019": 1056640,
+   "areaKm2": 2325.8
+  },
+  {
+   "code": "022",
+   "name": "Kiambu",
+   "population2019": 2417735,
+   "areaKm2": 2449.2
+  },
+  {
+   "code": "023",
+   "name": "Turkana",
+   "population2019": 1504976,
+   "areaKm2": 98597.8
+  },
+  {
+   "code": "024",
+   "name": "West Pokot",
+   "population2019": 621241,
+   "areaKm2": 8418.2
+  },
+  {
+   "code": "025",
+   "name": "Samburu",
+   "population2019": 310327,
+   "areaKm2": 20182.5
+  },
+  {
+   "code": "026",
+   "name": "Trans-Nzoia",
+   "population2019": 990341,
+   "areaKm2": 2469.9
+  },
+  {
+   "code": "027",
+   "name": "Uasin Gishu",
+   "population2019": 1163186,
+   "areaKm2": 2955.3
+  },
+  {
+   "code": "028",
+   "name": "Elgeyo-Marakwet",
+   "population2019": 454480,
+   "areaKm2": 3049.7
+  },
+  {
+   "code": "029",
+   "name": "Nandi",
+   "population2019": 885711,
+   "areaKm2": 2884.5
+  },
+  {
+   "code": "030",
+   "name": "Baringo",
+   "population2019": 666763,
+   "areaKm2": 11075.3
+  },
+  {
+   "code": "031",
+   "name": "Laikipia",
+   "population2019": 518560,
+   "areaKm2": 8696.1
+  },
+  {
+   "code": "032",
+   "name": "Nakuru",
+   "population2019": 2162202,
+   "areaKm2": 7509.5
+  },
+  {
+   "code": "033",
+   "name": "Narok",
+   "population2019": 1157873,
+   "areaKm2": 17921.2
+  },
+  {
+   "code": "034",
+   "name": "Kajiado",
+   "population2019": 1117840,
+   "areaKm2": 21292.7
+  },
+  {
+   "code": "035",
+   "name": "Kericho",
+   "population2019": 901777,
+   "areaKm2": 2454.5
+  },
+  {
+   "code": "036",
+   "name": "Bomet",
+   "population2019": 875689,
+   "areaKm2": 1997.9
+  },
+  {
+   "code": "037",
+   "name": "Kakamega",
+   "population2019": 1867579,
+   "areaKm2": 3033.8
+  },
+  {
+   "code": "038",
+   "name": "Vihiga",
+   "population2019": 590013,
+   "areaKm2": 531.3
+  },
+  {
+   "code": "039",
+   "name": "Bungoma",
+   "population2019": 1670570,
+   "areaKm2": 2206.9
+  },
+  {
+   "code": "040",
+   "name": "Busia",
+   "population2019": 893681,
+   "areaKm2": 1628.4
+  },
+  {
+   "code": "041",
+   "name": "Siaya",
+   "population2019": 993183,
+   "areaKm2": 2496.1
+  },
+  {
+   "code": "042",
+   "name": "Kisumu",
+   "population2019": 1155574,
+   "areaKm2": 2009.5
+  },
+  {
+   "code": "043",
+   "name": "Homa Bay",
+   "population2019": 1131950,
+   "areaKm2": 3154.7
+  },
+  {
+   "code": "044",
+   "name": "Migori",
+   "population2019": 1116436,
+   "areaKm2": 2586.4
+  },
+  {
+   "code": "045",
+   "name": "Kisii",
+   "population2019": 1266860,
+   "areaKm2": 1317.9
+  },
+  {
+   "code": "046",
+   "name": "Nyamira",
+   "population2019": 605576,
+   "areaKm2": 912.5
+  },
+  {
+   "code": "047",
+   "name": "Nairobi",
+   "population2019": 4397073,
+   "areaKm2": 694.9
+  }
+ ]
+}

@@ -658,15 +658,16 @@ test('the DISPLAY rail starts collapsed on a first run, and a stored choice wins
 
 test('the voice TOOL SCHEMA matches the pinned release — the mission mapping is instructions only', () => {
   // ALPR deliberately adds its ID to the two layer menus and visibility aliases;
-  // the Kenya El Niño layers (kenya-*, nasa-imerg-rain) extend the same enums.
+  // the Kenya El Niño layers (kenya-*, nasa-imerg-rain, nasa-flood-water,
+  // gdacs-flood-alerts, kmd-alerts, kenya-flood-footprints) extend the same enums.
   // Canonical serialization pins every tool name, description, property and
   // ordering while allowing source formatting. Derived from the unchanged
   // release schema before formatting (the previous source-byte pin passed).
   const block = JSON.stringify(GEV_REALTIME_TOOLS);
-  assert.equal(block.length, 26923, 'serialized tool schema length drifted');
+  assert.equal(block.length, 27079, 'serialized tool schema length drifted');
   assert.equal(
     crypto.createHash('sha256').update(block).digest('hex'),
-    '1830749edd43dda2da412025462bad70c052afef91746bba208f8fedc25ee8c0',
+    '21834a13bdb58155ef14d244421ced5539accb3ac37cde3896f777d0d505ba97',
     'the first-run missions must ride EXISTING tools: no schema edit, no cache bust',
   );
   const instructions = fs.readFileSync(new URL('../server/providers/openai/instructions.js', import.meta.url), 'utf8');

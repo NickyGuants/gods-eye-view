@@ -4,7 +4,7 @@
  * rainfall row per county. No Cesium, no browser globals.
  */
 
-/** Rainfall bands for the 7-day forecast total (mm). */
+/** Rainfall bands for the 7-day forecast total (mm); `unknown` = no data. */
 export const RAIN_BANDS = Object.freeze([
   { id: 'dry', max: 10, label: 'Dry' },
   { id: 'light', max: 40, label: 'Light' },
@@ -53,13 +53,20 @@ export function rainRowFromLocation(location, county, todayIso) {
   if (todayIndex < 0) todayIndex = times.length - 1;
 
   let past7 = 0;
-  for (let i = Math.max(0, todayIndex - 7); i < todayIndex; i++)
-    past7 += sums[i] || 0;
+  let past7Days = 0;
+  for (let i = Math.max(0, todayIndex - 7); i < todayIndex; i++) {
+    if (sums[i] === null) continue;
+    past7 += sums[i];
+    past7Days++;
+  }
   let next7 = 0;
+  let next7Days = 0;
   let wettestDay = null;
   let wettestMm = -1;
   for (let i = todayIndex; i < Math.min(times.length, todayIndex + 7); i++) {
-    const mm = sums[i] || 0;
+    const mm = sums[i];
+    if (mm === null) continue;
+    next7Days++;
     next7 += mm;
     if (mm > wettestMm) {
       wettestMm = mm;
@@ -67,8 +74,14 @@ export function rainRowFromLocation(location, county, todayIso) {
     }
   }
   let next3 = 0;
-  for (let i = todayIndex; i < Math.min(times.length, todayIndex + 3); i++)
-    next3 += sums[i] || 0;
+  let next3Days = 0;
+  for (let i = todayIndex; i < Math.min(times.length, todayIndex + 3); i++) {
+    if (sums[i] === null) continue;
+    next3 += sums[i];
+    next3Days++;
+  }
+  // Nulls are unknown, never dry: no forecast days at all means no band.
+  const known = next7Days > 0;
 
   const days = times.map((time, i) => ({
     time,
@@ -84,13 +97,16 @@ export function rainRowFromLocation(location, county, todayIso) {
     lat: finiteOrNull(location.latitude) ?? county.lat,
     lon: finiteOrNull(location.longitude) ?? county.lon,
     todayIso: times[todayIndex],
-    past7Mm: Math.round(past7 * 10) / 10,
-    next3Mm: Math.round(next3 * 10) / 10,
-    next7Mm: Math.round(next7 * 10) / 10,
+    past7Mm: past7Days ? Math.round(past7 * 10) / 10 : null,
+    past7Days,
+    next3Mm: next3Days ? Math.round(next3 * 10) / 10 : null,
+    next3Days,
+    next7Mm: known ? Math.round(next7 * 10) / 10 : null,
+    next7Days,
     todayMm: sums[todayIndex],
     wettestDay,
     wettestMm: wettestMm >= 0 ? Math.round(wettestMm * 10) / 10 : null,
-    band: rainBand(next7),
+    band: known ? rainBand(next7) : 'unknown',
     days,
   };
 }

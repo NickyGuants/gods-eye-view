@@ -11,10 +11,30 @@ import {
   rainReadoutDetails,
   mapRainAnalystRecord,
   formatMm,
+  formatPopulation,
 } from './model.js';
 export * from './model.js';
 export { createOpenMeteoRainSource } from './source.js';
 export { KENYA_COUNTIES } from './counties.js';
+import countyPopulation from '../../data/local_data/kenya/county_population_2019.json' with { type: 'json' };
+
+/** "Murang'a" / "Taita-Taveta" / "Homa Bay" → comparable key. */
+function nameKey(name) {
+  return String(name || '')
+    .toLowerCase()
+    .replace(/[^a-z]/g, '');
+}
+const POPULATION_BY_KEY = new Map(
+  (countyPopulation.counties || []).map((c) => [
+    nameKey(c.name),
+    c.population2019,
+  ]),
+);
+/** 2019 census residents of a county by name, or null. */
+export function countyPopulation2019(name) {
+  const n = POPULATION_BY_KEY.get(nameKey(name));
+  return Number.isFinite(n) ? n : null;
+}
 
 export const KENYA_COUNTY_RAIN_LAYER_ID = 'kenya-county-rain';
 /** Open-Meteo refreshes hourly; match it. */
@@ -64,6 +84,9 @@ export function createKenyaCountyRainLayer({
   let _lastError = null;
   let _enabled = false;
   let _rows = [];
+  let _wetCount = 0;
+  let _wetResidents = 0;
+  let _unknownCount = 0;
   /** @type {object|null} Parsed county GeoJSON, kept for the layer's lifetime. */
   let _counties = null;
   /** county id → { fills: Entity[], outlines: Entity[], anchor: Entity } */
@@ -214,6 +237,8 @@ export function createKenyaCountyRainLayer({
         ]);
         if (request.signal.aborted || _request !== request || !_enabled)
           return false;
+        for (const row of rows)
+          row.population2019 = countyPopulation2019(row.name);
         const featuresById = new Map(
           geojson.features.map((f) => [String(f.id), f]),
         );
@@ -290,11 +315,17 @@ export function createKenyaCountyRainLayer({
         _count = rows.length;
         _lastUpdate = Date.now();
         _lastError = null;
-        const wet = rows.filter(
+        const wetRows = rows.filter(
           (r) => r.band === 'heavy' || r.band === 'extreme',
-        ).length;
+        );
+        _wetCount = wetRows.length;
+        _wetResidents = wetRows.reduce(
+          (sum, r) => sum + (r.population2019 || 0),
+          0,
+        );
+        _unknownCount = rows.filter((r) => r.band === 'unknown').length;
         console.log(
-          `[Data:KenyaCountyRain] Updated: ${_count} counties, ${wet} heavy or worse`,
+          `[Data:KenyaCountyRain] Updated: ${_count} counties, ${_wetCount} heavy or worse (${_wetResidents} residents, 2019), ${_unknownCount} without data`,
         );
         governorRequestRender?.('kenya-county-rain:update');
         return true;
@@ -337,10 +368,17 @@ export function createKenyaCountyRainLayer({
     },
 
     getStats() {
+      const status = _count
+        ? `${_wetCount} heavy/extreme · ${formatPopulation(_wetResidents)} residents of those counties (2019)` +
+          (_unknownCount ? ` · ${_unknownCount} no data` : '')
+        : undefined;
       return {
         count: _count,
         lastUpdate: _lastUpdate,
         error: _lastError,
+        status,
+        heavyOrExtreme: _wetCount,
+        residentsHeavyOrExtreme: _wetResidents,
         coverage: 'Kenya · 47 counties',
       };
     },

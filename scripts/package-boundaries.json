@@ -1825,7 +1825,24 @@
       "src/layers/kenyaCountyRain/records.js",
       "src/layers/kenyaCountyRain/counties.js",
       "src/layers/nasaImerg/index.js",
-      "src/layers/nasaImerg/model.js"
+      "src/layers/nasaImerg/model.js",
+      "src/app/layers/nasaFloodWater.js",
+      "src/app/layers/gdacsFloods.js",
+      "src/app/layers/kmdAlerts.js",
+      "src/layers/gibsOverlay/index.js",
+      "src/layers/nasaFloodWater/index.js",
+      "src/layers/nasaFloodWater/model.js",
+      "src/layers/gdacsFloods/index.js",
+      "src/layers/gdacsFloods/records.js",
+      "src/layers/gdacsFloods/source.js",
+      "src/layers/kmdAlerts/index.js",
+      "src/layers/kmdAlerts/cap.js",
+      "src/app/layers/kenyaFloodFootprints.js",
+      "src/layers/kenyaFloodFootprints/index.js",
+      "src/layers/kenyaFloodFootprints/model.js",
+      "src/layers/kenyaRiverGauges/returnPeriods.js",
+      "src/layers/kenyaRiverGauges/thresholds.json",
+      "src/data/local_data/kenya/county_population_2019.json"
     ],
     "external": [
       "@mapbox/vector-tile",
@@ -2235,7 +2252,24 @@
       "src/layers/kenyaCountyRain/records.js",
       "src/layers/kenyaCountyRain/counties.js",
       "src/layers/nasaImerg/index.js",
-      "src/layers/nasaImerg/model.js"
+      "src/layers/nasaImerg/model.js",
+      "src/app/layers/nasaFloodWater.js",
+      "src/app/layers/gdacsFloods.js",
+      "src/app/layers/kmdAlerts.js",
+      "src/layers/gibsOverlay/index.js",
+      "src/layers/nasaFloodWater/index.js",
+      "src/layers/nasaFloodWater/model.js",
+      "src/layers/gdacsFloods/index.js",
+      "src/layers/gdacsFloods/records.js",
+      "src/layers/gdacsFloods/source.js",
+      "src/layers/kmdAlerts/index.js",
+      "src/layers/kmdAlerts/cap.js",
+      "src/app/layers/kenyaFloodFootprints.js",
+      "src/layers/kenyaFloodFootprints/index.js",
+      "src/layers/kenyaFloodFootprints/model.js",
+      "src/layers/kenyaRiverGauges/returnPeriods.js",
+      "src/layers/kenyaRiverGauges/thresholds.json",
+      "src/data/local_data/kenya/county_population_2019.json"
     ],
     "external": [
       "cesium",
@@ -2732,7 +2766,9 @@
     "modules": [
       "src/layers/kenyaRiverGauges/source.js",
       "src/layers/kenyaRiverGauges/records.js",
-      "src/layers/kenyaRiverGauges/sites.js"
+      "src/layers/kenyaRiverGauges/sites.js",
+      "src/layers/kenyaRiverGauges/returnPeriods.js",
+      "src/layers/kenyaRiverGauges/thresholds.json"
     ],
     "external": []
   },

@@ -2,21 +2,23 @@
 
 # 🇰🇪 Kenya · El Niño 2026 fork
 
-**Live (keyless): <https://nickyguants.github.io/gods-eye-view/>**
+**Live (keyless): <https://nickyguants.github.io/gods-eye-view/>** · [open on Kenya with every flood layer on](https://nickyguants.github.io/gods-eye-view/?welcome=0#v=2&lat=0.4&lon=37.8&alt=1650000&heading=0&pitch=-88&roll=0&map=esri-imagery&l=l.y.v.k.o.1.2.3.4)
 
 </div>
 
 This fork of [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view)
 adds a **Kenya · El Niño 2026** flood-watch layer group for the October to
-December 2026 rains: 24 GloFAS river gauge sites (Copernicus, via the
-Open-Meteo Flood API) coloured by how far the 10-day forecast peak sits above
-the 30-day median, all 47 counties painted by their 7-day rainfall forecast
-(Open-Meteo), NASA GIBS IMERG rainfall-rate imagery draped on the globe, and two
-bundled reference layers: the KMD-named and recurring flood hotspots, and
-Nairobi's Digital Matatus route network with its termini. Nairobi and Kenya
-join the location presets. Every source is public and fetched live from the
-browser or bundled with its licence noted in `DATA_SOURCES.md`; no API key is
-needed.
+December 2026 rains: the Kenya Meteorological Department's official CAP
+warnings drawn as polygons; 24 GloFAS river sites (Copernicus, via the
+Open-Meteo Flood API) coloured by modelled flood potential, the share of the
+50-member ensemble crossing each site's own 2-, 5- and 20-year return levels;
+3D forecast flood footprints computed in the browser from the terrain mesh,
+the ensemble peaks and hydraulic geometry; all 47 counties painted by their
+7-day rainfall forecast with 2019 census residents; NASA IMERG rainfall and NASA MODIS/VIIRS observed flood water draped
+on the globe; GDACS flood alerts for East Africa; and two bundled reference
+layers, the recurring flood hotspots and Nairobi's Digital Matatus network.
+Every source is public and fetched live from the browser, or bundled or
+extracted with its licence noted in `DATA_SOURCES.md`; no API key is needed.
 
 The live site is a static GitHub Pages build in keyless mode (no Cesium ion,
 Google, OpenAI or TomTom keys): the Kenya layers, the Esri and OSM basemaps and
@@ -27,6 +29,8 @@ layer shows, what the severity bands mean, how to verify the requests are real
 and the known limits.
 
 ![Kenya flood watch layers on the globe](docs/media/kenya-el-nino-2026.png)
+
+![Forecast flood footprint in 3D on the lower Nzoia](docs/media/kenya-flood-footprint-3d.png)
 
 ---
 

@@ -6,6 +6,8 @@ import {
   KENYA_GAUGE_OVERLAY_COLLISION_CAPACITY,
   severityColor,
   severityLabel,
+  severityRank,
+  severityCounts,
   discRadiusMeters,
   createGaugeOverlayEntry,
   selectGaugeOverlayCohort,
@@ -17,8 +19,8 @@ export { createOpenMeteoFloodSource } from './source.js';
 export { KENYA_GAUGE_SITES } from './sites.js';
 
 export const KENYA_RIVER_GAUGES_LAYER_ID = 'kenya-river-gauges';
-/** GloFAS updates once a day; half an hour keeps the snap cache warm cheaply. */
-const REFRESH_MS = 30 * 60 * 1000;
+/** GloFAS updates once a day; hourly is plenty and kind to Open-Meteo. */
+const REFRESH_MS = 60 * 60 * 1000;
 
 /**
  * Own the Kenya river gauge display: one ground disc and anchor per site,
@@ -53,6 +55,8 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
   let _enabled = false;
   /** @type {object[]} Latest normalized rows, for the analyst seam. */
   let _rows = [];
+  /** Rows per severity band, for the panel status line. */
+  let _counts = {};
   /** Sampled terrain height per site id (metres above the ellipsoid). */
   const _heights = new Map();
 
@@ -102,7 +106,7 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
 
   const layer = {
     id: KENYA_RIVER_GAUGES_LAYER_ID,
-    name: 'Kenya river gauges',
+    name: 'Kenya river sites (GloFAS)',
     icon: '≋',
     source: 'GloFAS · Open-Meteo · LIVE',
     refreshInterval: REFRESH_MS,
@@ -167,11 +171,11 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
               material: new Cesium.ColorMaterialProperty(color.withAlpha(0.28)),
               outline: true,
               outlineColor: color.withAlpha(0.95),
-              outlineWidth: row.severity === 'severe' ? 3 : 2,
+              outlineWidth: severityRank(row.severity) >= 3 ? 3 : 2,
               heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
             },
             point: {
-              pixelSize: row.severity === 'steady' ? 9 : 12,
+              pixelSize: severityRank(row.severity) === 0 ? 9 : 12,
               color,
               outlineColor: Cesium.Color.BLACK,
               outlineWidth: 2,
@@ -183,7 +187,8 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
               severity: row.severity,
               current: row.current,
               peak: row.peak,
-              ratio: row.ratio,
+              medianPeak: row.medianPeak,
+              reachedKey: row.reachedKey,
             },
           });
           entity.__gevKenyaGaugeId = row.id;
@@ -224,12 +229,14 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
             properties: {
               river: row.river,
               county: row.county,
-              severity: severityLabel(row.severity),
+              severity: severityLabel(row.severity, row.unratedReason),
+              withinThreeDays: row.soon,
               currentM3s: row.current,
               medianM3s: row.baseline,
-              peakM3s: row.peak,
+              centralPeakM3s: row.medianPeak,
+              upperPeakM3s: row.peak,
               peakDate: row.peakDate,
-              peakRatio: row.ratio,
+              thresholdsM3s: row.thresholds,
               note: row.note,
             },
           });
@@ -249,9 +256,13 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
         _count = rows.length;
         _lastUpdate = Date.now();
         _lastError = null;
-        const alarming = rows.filter((r) => r.severity !== 'steady').length;
+        _counts = severityCounts(rows);
+        const alarming = rows.filter(
+          (r) => severityRank(r.severity) >= 2,
+        ).length;
+        const watch = rows.filter((r) => r.severity === 'watch').length;
         console.log(
-          `[Data:KenyaRiverGauges] Updated: ${_count} gauges, ${alarming} rising or worse`,
+          `[Data:KenyaRiverGauges] Updated: ${_count} sites, ${alarming} at Q2 or worse, ${watch} on watch`,
         );
         governorRequestRender?.('kenya-river-gauges:update');
         return true;
@@ -281,6 +292,7 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
       _dataSource = null;
       _viewer = null;
       _rows = [];
+      _counts = {};
       _count = 0;
       _lastUpdate = null;
       _lastError = null;
@@ -296,11 +308,20 @@ export function createKenyaRiverGaugesLayer({ source, services } = {}) {
     },
 
     getStats() {
+      const c = _counts;
+      const alarming = (c.moderate || 0) + (c.high || 0) + (c.severe || 0);
+      const status = _count
+        ? `${alarming} at Q2+ · ${c.watch || 0} watch · ${c.normal || 0} normal` +
+          (c.unrated ? ` · ${c.unrated} unrated` : '') +
+          (c.unknown ? ` · ${c.unknown} no data` : '')
+        : undefined;
       return {
         count: _count,
         lastUpdate: _lastUpdate,
         error: _lastError,
-        coverage: 'Kenya',
+        status,
+        bands: { ...c },
+        coverage: 'Kenya · 24 modelled river sites',
       };
     },
   };

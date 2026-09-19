@@ -7,6 +7,7 @@ export const KENYA_RAIN_OVERLAY_COLLISION_CAPACITY = 32;
 
 /** Band → colour: a single blue ramp so the map reads as one quantity. */
 const BAND_COLORS = Object.freeze({
+  unknown: Cesium.Color.fromCssColorString('#6b7280'),
   dry: Cesium.Color.fromCssColorString('#d9c9a3'),
   light: Cesium.Color.fromCssColorString('#9ecae1'),
   moderate: Cesium.Color.fromCssColorString('#4292c6'),
@@ -36,7 +37,9 @@ export function bandFillAlpha(band) {
 }
 
 export function bandRank(band) {
-  return ['dry', 'light', 'moderate', 'heavy', 'extreme'].indexOf(band);
+  return ['unknown', 'dry', 'light', 'moderate', 'heavy', 'extreme'].indexOf(
+    band,
+  );
 }
 
 /** "128 mm" */
@@ -55,6 +58,7 @@ export function formatDay(iso) {
 
 /** One-line ambient detail: the 7-day total and the wettest day. */
 export function rainAmbientDetail(row) {
+  if (row.band === 'unknown') return 'no forecast data';
   const wettest =
     row.wettestMm > 0
       ? ` · ${formatDay(row.wettestDay)} ${formatMm(row.wettestMm)}`
@@ -62,12 +66,27 @@ export function rainAmbientDetail(row) {
   return `${formatMm(row.next7Mm)} next 7d${wettest}`;
 }
 
+/** "1.2 M" / "316 k" population text. */
+export function formatPopulation(n) {
+  if (!Number.isFinite(n)) return '—';
+  if (n >= 1e6) return `${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1)} M`;
+  if (n >= 1e3) return `${Math.round(n / 1e3)} k`;
+  return String(Math.round(n));
+}
+
 /** Click readout lines. */
 export function rainReadoutDetails(row) {
   const lines = [
-    `Next 7 days ${formatMm(row.next7Mm)} · next 3 days ${formatMm(row.next3Mm)}`,
+    `Next 7 days ${formatMm(row.next7Mm)} · next 3 days ${formatMm(row.next3Mm)}` +
+      (row.next7Days !== undefined && row.next7Days < 7
+        ? ` · ${row.next7Days}/7 days of data`
+        : ''),
     `Past 7 days ${formatMm(row.past7Mm)} · today ${formatMm(row.todayMm)}`,
   ];
+  if (Number.isFinite(row.population2019))
+    lines.push(
+      `Residents ${formatPopulation(row.population2019)} (2019 census)`,
+    );
   if (row.wettestDay)
     lines.push(
       `Wettest day ${formatDay(row.wettestDay)} · ${formatMm(row.wettestMm)}`,
@@ -92,7 +111,7 @@ export function createRainOverlayEntry({ row, position }) {
     title: row.name,
     details: [rainAmbientDetail(row)],
     accent: color.toCssColorString(),
-    priority: bandRank(row.band) * 100000 + Math.round(row.next7Mm * 10),
+    priority: bandRank(row.band) * 100000 + Math.round((row.next7Mm || 0) * 10),
     collisionGroup: 'ambient-card',
     zIndex: 28,
     interactive: false,
@@ -135,6 +154,7 @@ export function mapRainAnalystRecord(row) {
     lon: num(row.lon),
     band: row.band,
     next7Mm: num(row.next7Mm),
+    population2019: num(row.population2019),
     next3Mm: num(row.next3Mm),
     past7Mm: num(row.past7Mm),
     wettestDay: row.wettestDay || null,
