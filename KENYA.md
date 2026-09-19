@@ -111,6 +111,12 @@ rains start; that comparison is the cheapest honesty check there is.
 
 ![Forecast flood footprint on the lower Nzoia](docs/media/kenya-flood-footprint-3d.png)
 
+![Nairobi River at Kariobangi with the matatu network and hotspots](docs/media/kenya-nairobi-rivers-3d.png)
+
+The screenshots are rendered by `.github/workflows/kenya-proof.yml` on a
+runner from live data (`scripts/shot-kenya-3d.mjs`), after the live browser
+QA passes, so what is in the README is what the deployed build drew.
+
 ## Verify it is real
 
 KMD Warnings are "in force" only when the CAP message is Actual, is an Alert
