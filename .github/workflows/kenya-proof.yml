@@ -1,0 +1,60 @@
+name: Kenya live proof and screenshots
+
+# Runs the Kenya browser QA against the REAL APIs and renders the oblique 3D
+# screenshots on a runner (a laptop IP gets rate-limited by Open-Meteo after
+# the threshold pulls). Uploads the QA log and PNGs as artifacts.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24.14.0
+          cache: npm
+
+      - name: Install locked dependencies (with Chrome for Testing)
+        run: npm ci
+
+      - name: Build and serve
+        run: |
+          npm run build
+          nohup npx vite preview --port 4173 > preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:4173/ > /dev/null && break; sleep 1; done
+
+      - name: Live browser QA (real APIs)
+        run: QA_KENYA_LIVE=1 node scripts/qa-kenya.mjs | tee qa-live.log
+
+      - name: Oblique 3D screenshots
+        run: |
+          mkdir -p shots
+          node scripts/shot-kenya-3d.mjs --out shots/kenya-flood-footprint-3d.png \
+            --view '{"lat":0.06,"lon":33.98,"height":9000,"heading":35,"pitch":-32}' \
+            --layers kenya-river-gauges,kenya-flood-footprints,nasa-flood-water | tee shots/budalangi.txt
+          node scripts/shot-kenya-3d.mjs --out shots/kenya-nairobi-rivers-3d.png \
+            --view '{"lat":-1.31,"lon":36.86,"height":7000,"heading":20,"pitch":-35}' \
+            --layers kenya-river-gauges,kenya-flood-footprints,kenya-matatu-routes,kenya-flood-hotspots | tee shots/nairobi.txt
+          node scripts/shot-kenya-3d.mjs --out shots/kenya-el-nino-2026.png \
+            --view '{"lat":0.4,"lon":37.8,"height":1650000,"heading":0,"pitch":-88}' \
+            --layers kmd-alerts,kenya-river-gauges,kenya-flood-footprints,kenya-county-rain,nasa-imerg-rain,nasa-flood-water,gdacs-flood-alerts,kenya-flood-hotspots,kenya-matatu-routes | tee shots/kenya.txt
+
+      - name: Upload proof
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kenya-proof
+          path: |
+            qa-live.log
+            shots/
