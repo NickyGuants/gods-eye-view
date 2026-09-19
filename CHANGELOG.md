@@ -1,5 +1,13 @@
 # Changelog
 
+- Deploy the Kenya El Niño 2026 fork to GitHub Pages in keyless mode
+  (`.github/workflows/deploy-pages.yml`, base path `/gods-eye-view/`, Cesium
+  static assets moved under the served root). Live verification against the
+  real Open-Meteo flood and forecast APIs and NASA GIBS IMERG tiles passes;
+  the Kuja gauge moves from Migori town (a dry tributary cell in GloFAS) to the
+  lower Kuja main stem at Nyatike; logo and mic asset paths honour the Vite
+  base path.
+
 - Add a Kenya · El Niño 2026 layer group: live GloFAS river gauges at 24 Kenyan
   river sites and a 47-county 7-day rainfall forecast (both Open-Meteo, fetched
   from the browser without a key, with click readouts and analyst records), a

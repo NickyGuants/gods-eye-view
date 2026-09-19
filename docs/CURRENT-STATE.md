@@ -3964,3 +3964,15 @@ the globe is hidden by Google 3D Tiles. `kenya-matatu-routes` and
 `localGeojsonCore.js`. Registry tokens: k, l, o, v, y. Browser proof:
 `scripts/qa-kenya.mjs` (fixtures by default, `QA_KENYA_LIVE=1` for real APIs).
 
+The fork deploys to GitHub Pages from `kenya-el-nino-2026` through
+`.github/workflows/deploy-pages.yml`: `vite build --base=/gods-eye-view/`, the
+`vite-plugin-cesium` output moved from `dist/gods-eye-view/cesium/` to
+`dist/cesium/` (the HTML references `<base>/cesium/`), then
+`actions/upload-pages-artifact` and `actions/deploy-pages` (the `github-pages`
+environment allows that branch). Keyless mode: no ion, Google, OpenAI or TomTom
+keys, so `/api/*` calls 404 by design; the Kenya layers, Esri/OSM basemaps and
+Re:Earth terrain work. Bundled `counties.json` and the `.geojsonl` files resolve
+through `new URL(..., import.meta.url)`, which Vite rewrites under the base
+path; `logoGaze.js` and `voice/control.js` prefix `import.meta.env.BASE_URL`
+for the same reason. Live URL: https://nickyguants.github.io/gods-eye-view/.
+

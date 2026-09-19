@@ -104,8 +104,9 @@ themselves use CC BY 4.0 and NASA open data.
 
 ## Next steps that turn this into a product
 
-1. Push this repo to GitHub and deploy the static build (`npm run build` →
-   `dist/`) to GitHub Pages or Cloudflare Pages in keyless mode. The Kenya
+1. Done: the fork deploys to GitHub Pages in keyless mode at
+   <https://nickyguants.github.io/gods-eye-view/> on every push to
+   `kenya-el-nino-2026` (`.github/workflows/deploy-pages.yml`). The Kenya
    layers need no server; the voice agent and the keyed basemaps do.
 2. Add Google's Flood Forecasting API gauges (needs a Google Cloud API key)
    as a second, independent river source with real flood thresholds and

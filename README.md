@@ -1,5 +1,37 @@
 <div align="center">
 
+# 🇰🇪 Kenya · El Niño 2026 fork
+
+**Live (keyless): <https://nickyguants.github.io/gods-eye-view/>**
+
+</div>
+
+This fork of [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view)
+adds a **Kenya · El Niño 2026** flood-watch layer group for the October to
+December 2026 rains: 24 GloFAS river gauge sites (Copernicus, via the
+Open-Meteo Flood API) coloured by how far the 10-day forecast peak sits above
+the 30-day median, all 47 counties painted by their 7-day rainfall forecast
+(Open-Meteo), NASA GIBS IMERG rainfall-rate imagery draped on the globe, and two
+bundled reference layers: the KMD-named and recurring flood hotspots, and
+Nairobi's Digital Matatus route network with its termini. Nairobi and Kenya
+join the location presets. Every source is public and fetched live from the
+browser or bundled with its licence noted in `DATA_SOURCES.md`; no API key is
+needed.
+
+The live site is a static GitHub Pages build in keyless mode (no Cesium ion,
+Google, OpenAI or TomTom keys): the Kenya layers, the Esri and OSM basemaps and
+the Re:Earth terrain fallback all work there, while the voice agent and the
+keyed basemaps stay off. It is deployed from the `kenya-el-nino-2026` branch
+by `.github/workflows/deploy-pages.yml`. Read [KENYA.md](KENYA.md) for what each
+layer shows, what the severity bands mean, how to verify the requests are real
+and the known limits.
+
+![Kenya flood watch layers on the globe](docs/media/kenya-el-nino-2026.png)
+
+---
+
+<div align="center">
+
 # 🌐 God's Eye View
 
 [![CI](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml)
