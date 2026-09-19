@@ -40,6 +40,18 @@ test('channel is the lowest core cell and the fill only reaches connected low gr
   assert.equal(dry.flooded, 0);
   // A surface exactly at the channel bed floods nothing: zero discharge, zero area.
   assert.equal(floodFill(h, 5, 5, ch.index, 10).flooded, 0);
+  // Ground far below the channel is downstream channel, not flood plain.
+  const valley = [
+    20, 12, 10, 12, 20,
+    20, 12, 8, 12, 20,
+    20, 12, 6, 12, 20,
+    20, 12, 4, 12, 20,
+    20, 12, 2, 12, 20,
+  ];
+  const seed = 2; // the 10 m cell at the top of the valley
+  const banded = floodFill(valley, 5, 5, seed, 12.5, 10 - 2.5);
+  assert.equal(banded.flooded, 4, 'only cells within one stage of the seed');
+  assert.ok(banded.maxDepth <= 5);
 });
 
 test('computeFootprint scales with discharge and handles missing terrain', () => {

@@ -295,9 +295,13 @@ try {
     `gauge entities in scene (${gaugeScene.entities})`,
     gaugeScene.entities >= 20,
   );
+  // Fixtures force a spread of bands; live data may legitimately be all
+  // "normal" in the dry season, so only the fixture run demands variety.
   check(
-    `severity bands vary (${gaugeScene.severities.join(',')})`,
-    gaugeScene.severities.length >= 2,
+    `severity bands ${LIVE ? 'present' : 'vary'} (${gaugeScene.severities.join(',')})`,
+    LIVE
+      ? gaugeScene.severities.length >= 1
+      : gaugeScene.severities.length >= 2,
   );
   check(
     'no site is classified from an ensemble max alone (rated rows carry members)',

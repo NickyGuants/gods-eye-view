@@ -101,7 +101,9 @@ county officer asks. Read this first: **an uncalibrated terrain scenario
 driven by a ~5 km river-flow forecast; 200 m blocks are not 200 m accuracy;
 verify river position, depths and defences locally before operational use.**
 The channel is the lowest core cell, which can be a depression rather than
-the riverbed; the water surface is level, with no downstream gradient; the
+the riverbed; the water surface is level, with no downstream gradient, so ground more
+than one stage below the channel cell is treated as downstream channel and
+left out rather than shown metres deep; the
 above-bankfull stage curve is a sensitivity assumption (results beyond ten
 times Q2 are flagged "beyond curve range"); footprints that reach the grid
 edge are flagged "cut at grid edge"; water shallower than 5 cm is not counted. Compare it with the observed Flood Water layer once the

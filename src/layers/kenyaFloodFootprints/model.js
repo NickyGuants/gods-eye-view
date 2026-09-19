@@ -93,8 +93,11 @@ export function findChannel(
 
 /**
  * Flood-fill from the channel: cells connected (4-neighbour) to the seed
- * whose ground is at or below `waterSurface`. Returns depth per cell (0 =
- * dry) and the flooded cell count.
+ * whose ground is at or below `waterSurface` and at or above `floor`. The
+ * floor keeps a level surface from pouring down the valley: ground more than
+ * one stage below the channel cell is downstream channel, not flood plain,
+ * because the real water surface falls with the river. Returns depth per
+ * cell (0 = dry) and the flooded cell count.
  * @param {Float32Array|number[]} heights
  * @param {number} cols
  * @param {number} rows
@@ -102,7 +105,14 @@ export function findChannel(
  * @param {number} waterSurface Absolute height of the water surface.
  * @returns {{depths:Float32Array, flooded:number, maxDepth:number}}
  */
-export function floodFill(heights, cols, rows, seedIndex, waterSurface) {
+export function floodFill(
+  heights,
+  cols,
+  rows,
+  seedIndex,
+  waterSurface,
+  floor = -Infinity,
+) {
   const depths = new Float32Array(cols * rows);
   let flooded = 0;
   let maxDepth = 0;
@@ -114,7 +124,7 @@ export function floodFill(heights, cols, rows, seedIndex, waterSurface) {
   while (stack.length) {
     const i = stack.pop();
     const h = heights[i];
-    if (!Number.isFinite(h) || h > waterSurface) continue;
+    if (!Number.isFinite(h) || h > waterSurface || h < floor) continue;
     const d = waterSurface - h;
     // Traverse level ground for connectivity, but only water deeper than
     // MIN_DEPTH_M counts as flooded (zero discharge floods nothing).
@@ -173,7 +183,15 @@ export function computeFootprint({
     };
   }
   const waterSurface = channel.height + stage;
-  const fill = floodFill(heights, cols, rows, channel.index, waterSurface);
+  const floor = channel.height - stage;
+  const fill = floodFill(
+    heights,
+    cols,
+    rows,
+    channel.index,
+    waterSurface,
+    floor,
+  );
   return {
     stage,
     waterSurface,

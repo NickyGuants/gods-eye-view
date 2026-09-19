@@ -36,7 +36,9 @@ jobs:
           for i in $(seq 1 30); do curl -sf http://localhost:4173/ > /dev/null && break; sleep 1; done
 
       - name: Live browser QA (real APIs)
-        run: QA_KENYA_LIVE=1 node scripts/qa-kenya.mjs | tee qa-live.log
+        run: |
+          set -o pipefail
+          QA_KENYA_LIVE=1 node scripts/qa-kenya.mjs | tee qa-live.log
 
       - name: Oblique 3D screenshots
         run: |
