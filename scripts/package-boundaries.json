@@ -1809,7 +1809,23 @@
       "src/director/sharing/lifetime.js",
       "src/director/authoring.js",
       "src/scenes/sharing.js",
-      "src/ui/sceneSharing.js"
+      "src/ui/sceneSharing.js",
+      "src/app/layers/kenyaRiverGauges.js",
+      "src/app/layers/kenyaCountyRain.js",
+      "src/app/layers/nasaImerg.js",
+      "src/data/kenyaLocal.js",
+      "src/layers/kenyaRiverGauges/index.js",
+      "src/layers/kenyaRiverGauges/model.js",
+      "src/layers/kenyaRiverGauges/source.js",
+      "src/layers/kenyaRiverGauges/records.js",
+      "src/layers/kenyaRiverGauges/sites.js",
+      "src/layers/kenyaCountyRain/index.js",
+      "src/layers/kenyaCountyRain/model.js",
+      "src/layers/kenyaCountyRain/source.js",
+      "src/layers/kenyaCountyRain/records.js",
+      "src/layers/kenyaCountyRain/counties.js",
+      "src/layers/nasaImerg/index.js",
+      "src/layers/nasaImerg/model.js"
     ],
     "external": [
       "@mapbox/vector-tile",
@@ -2203,7 +2219,23 @@
       "src/sources/overpassFeaturesRecords.js",
       "src/sources/overpassFeatures.js",
       "src/sources/featureSource.js",
-      "src/sources/overpassRoads.js"
+      "src/sources/overpassRoads.js",
+      "src/app/layers/kenyaRiverGauges.js",
+      "src/app/layers/kenyaCountyRain.js",
+      "src/app/layers/nasaImerg.js",
+      "src/data/kenyaLocal.js",
+      "src/layers/kenyaRiverGauges/index.js",
+      "src/layers/kenyaRiverGauges/model.js",
+      "src/layers/kenyaRiverGauges/source.js",
+      "src/layers/kenyaRiverGauges/records.js",
+      "src/layers/kenyaRiverGauges/sites.js",
+      "src/layers/kenyaCountyRain/index.js",
+      "src/layers/kenyaCountyRain/model.js",
+      "src/layers/kenyaCountyRain/source.js",
+      "src/layers/kenyaCountyRain/records.js",
+      "src/layers/kenyaCountyRain/counties.js",
+      "src/layers/nasaImerg/index.js",
+      "src/layers/nasaImerg/model.js"
     ],
     "external": [
       "cesium",
@@ -2692,6 +2724,24 @@
       "src/sources/overpassFeaturesRecords.js",
       "src/sources/overpassFeatures.js",
       "src/sources/featureSource.js"
+    ],
+    "external": []
+  },
+  "kenya-river-gauges-source": {
+    "exports": ["./layers/kenya-river-gauges/source"],
+    "modules": [
+      "src/layers/kenyaRiverGauges/source.js",
+      "src/layers/kenyaRiverGauges/records.js",
+      "src/layers/kenyaRiverGauges/sites.js"
+    ],
+    "external": []
+  },
+  "kenya-county-rain-source": {
+    "exports": ["./layers/kenya-county-rain/source"],
+    "modules": [
+      "src/layers/kenyaCountyRain/source.js",
+      "src/layers/kenyaCountyRain/records.js",
+      "src/layers/kenyaCountyRain/counties.js"
     ],
     "external": []
   }

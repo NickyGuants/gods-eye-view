@@ -3937,3 +3937,30 @@ releases imagery layers/listeners on replacement. Destroy invalidates pending
 work and releases owned resources, including late factory results. Supplied 3D
 tilesets remain owned by the caller; tilesets created through the controller's
 factory are added to its viewer and removed on destruction.
+
+## Kenya El Niño 2026 layers
+
+Five layers sit in a `Kenya · El Niño 2026` panel group. `kenya-river-gauges`
+(`src/layers/kenyaRiverGauges/`) fetches GloFAS v4 discharge from the
+Open-Meteo Flood API for the 24 sites in `sites.js`, after a one-time 3×3
+neighbourhood probe that snaps each site to the wettest 0.05° cell (cached in
+localStorage for a week through an injected cache; a failed probe falls back to
+the raw sites). Severity is the 10-day forecast peak over the 30-day median
+(steady < ×1.3 < rising < ×2 < high < ×4 < severe), with near-dry channels
+(median under 2 m³/s) held at steady unless the peak clears 8 m³/s. Rows become
+ground discs plus clamped points, ambient cards, click readouts through
+`trackedReadout` (both Kenya live layers are in `READOUT_CONTEXT_LAYERS`) and
+analyst records (`ANALYST_LAYERS` gained both ids). `kenya-county-rain`
+(`src/layers/kenyaCountyRain/`) asks the Open-Meteo forecast API for all 47
+county centroids in one call (Nairobi time, 7 past + 10 forecast days) and
+paints the bundled county polygons (`src/data/local_data/kenya/counties.json`,
+geoBoundaries simplified) by 7-day total band. `nasa-imerg-rain`
+(`src/layers/nasaImerg/`) owns one `WebMapTileServiceImageryProvider`
+(GIBS KVP, `IMERG_Precipitation_Rate`, `GoogleMapsCompatible_Level6`) added
+above the basemap while enabled; it reports `degraded` with a status line when
+the globe is hidden by Google 3D Tiles. `kenya-matatu-routes` and
+`kenya-flood-hotspots` reuse `createLocalGeoJsonLayer` over bundled
+`.geojsonl` files (`src/data/kenyaLocal.js`), with card copy branches in
+`localGeojsonCore.js`. Registry tokens: k, l, o, v, y. Browser proof:
+`scripts/qa-kenya.mjs` (fixtures by default, `QA_KENYA_LIVE=1` for real APIs).
+

@@ -212,6 +212,24 @@ const LAYER_ALIASES = new Map([
   ['submarine cables', 'telegeography-submarine-cables'],
   ['cables', 'telegeography-submarine-cables'],
   ['telegeography', 'telegeography-submarine-cables'],
+  ['river gauges', 'kenya-river-gauges'],
+  ['rivers', 'kenya-river-gauges'],
+  ['floods', 'kenya-river-gauges'],
+  ['flood gauges', 'kenya-river-gauges'],
+  ['kenya rivers', 'kenya-river-gauges'],
+  ['county rain', 'kenya-county-rain'],
+  ['county rainfall', 'kenya-county-rain'],
+  ['rainfall forecast', 'kenya-county-rain'],
+  ['kenya rain', 'kenya-county-rain'],
+  ['rainfall now', 'nasa-imerg-rain'],
+  ['imerg', 'nasa-imerg-rain'],
+  ['live rain', 'nasa-imerg-rain'],
+  ['rain radar', 'nasa-imerg-rain'],
+  ['flood hotspots', 'kenya-flood-hotspots'],
+  ['hotspots', 'kenya-flood-hotspots'],
+  ['matatus', 'kenya-matatu-routes'],
+  ['matatu routes', 'kenya-matatu-routes'],
+  ['matatu', 'kenya-matatu-routes'],
   ['firms', 'local-firms'],
   ['fires', 'local-firms'],
   ['active fires', 'local-firms'],
@@ -4090,6 +4108,8 @@ function layerTitle(layerId) {
   if (layerId === 'local-dams') return 'Dam';
   if (layerId === 'telegeography-submarine-cables') return 'Submarine Cable';
   if (layerId === 'local-firms') return 'Active Fire';
+  if (layerId === 'kenya-river-gauges') return 'River Gauge';
+  if (layerId === 'kenya-county-rain') return 'County Rainfall';
   return layerId || 'Entity';
 }
 

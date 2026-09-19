@@ -222,6 +222,8 @@ export function getActiveTrackedReadoutId() {
 const READOUT_CONTEXT_LAYERS = new Set([
   'military-installations',
   'alpr-cameras',
+  'kenya-river-gauges',
+  'kenya-county-rain',
 ]);
 
 /**

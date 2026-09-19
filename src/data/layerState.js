@@ -337,6 +337,26 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
     disposition: 'enabled+options',
     optionOwner: 'flights',
   }),
+  Object.freeze({
+    id: 'kenya-county-rain',
+    token: 'l',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'kenya-flood-hotspots',
+    token: 'y',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'kenya-matatu-routes',
+    token: 'v',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'kenya-river-gauges',
+    token: 'k',
+    disposition: 'enabled-only',
+  }),
   Object.freeze({ id: 'local-dams', token: 'q', disposition: 'enabled-only' }),
   Object.freeze({
     id: 'local-datacenters',
@@ -358,6 +378,11 @@ export const LAYER_STATE_REGISTRY = Object.freeze([
   Object.freeze({
     id: 'military-installations',
     token: 'i',
+    disposition: 'enabled-only',
+  }),
+  Object.freeze({
+    id: 'nasa-imerg-rain',
+    token: 'o',
     disposition: 'enabled-only',
   }),
   Object.freeze({

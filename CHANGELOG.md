@@ -1,5 +1,14 @@
 # Changelog
 
+- Add a Kenya · El Niño 2026 layer group: live GloFAS river gauges at 24 Kenyan
+  river sites and a 47-county 7-day rainfall forecast (both Open-Meteo, fetched
+  from the browser without a key, with click readouts and analyst records), a
+  NASA GIBS IMERG rainfall-rate imagery overlay, and two bundled reference
+  layers (Digital Matatus routes and termini for Nairobi; KMD-named and
+  recurring flood/landslide hotspots). Nairobi and Kenya join the location
+  presets; voice aliases and the Realtime layer enums cover the new ids
+  (schema pins re-derived). See KENYA.md.
+
 - Distinguish PARTIAL vessel snapshots from STALE data in the layer panel, with
   accepted-record counts and unchanged retention, freshness and outage safeguards.
 

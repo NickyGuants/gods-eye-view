@@ -13,6 +13,8 @@ import { createSatelliteSource } from '../layers/satellites/source.js';
 import { createLaunchSource } from '../layers/launches/source.js';
 import { createOverpassAlprSource } from '../layers/alpr/source.js';
 import { createFirmsSource } from '../layers/firms/source.js';
+import { createOpenMeteoFloodSource } from '../layers/kenyaRiverGauges/source.js';
+import { createOpenMeteoRainSource } from '../layers/kenyaCountyRain/source.js';
 import { createReferenceSources } from '../sources/reference.js';
 export { createReferenceSources as createStandaloneReferenceSources } from '../sources/reference.js';
 
@@ -35,5 +37,27 @@ export function createStandaloneLayerSources() {
     launches: createLaunchSource(),
     alpr: createOverpassAlprSource(),
     firms: createFirmsSource(),
+    kenyaRiverGauges: createOpenMeteoFloodSource({
+      cache: standaloneSnapCache(),
+    }),
+    kenyaCountyRain: createOpenMeteoRainSource(),
   };
+}
+
+/**
+ * A tolerant string cache over localStorage for the river-gauge snap step.
+ * Absent or blocked storage (private windows, tests) yields `null`, and the
+ * source then re-probes on every session instead of failing.
+ */
+function standaloneSnapCache() {
+  try {
+    const storage = globalThis.localStorage;
+    if (!storage) return null;
+    return {
+      get: (key) => storage.getItem(key),
+      set: (key, value) => storage.setItem(key, value),
+    };
+  } catch {
+    return null;
+  }
 }

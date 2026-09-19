@@ -82,7 +82,7 @@ export const ACTION_DESCRIPTIONS = {
       properties: {
         layerId: {
           description:
-            'Common-name mapping for the non-obvious ids: space mission(s) → rocket-launches; fires/wildfires/active fires → local-firms (NASA FIRMS); ships/vessels/boats → ais-live-vessels; undersea/submarine cables → telegeography-submarine-cables; datacenters → local-datacenters; dams → local-dams; bikes/bike share → bikeshare; street traffic/congestion → traffic; traffic cameras → cctv; internet radio/stations → radio; ALPR/license plate readers/Flock cameras → alpr-cameras.',
+            'Common-name mapping for the non-obvious ids: space mission(s) → rocket-launches; fires/wildfires/active fires → local-firms (NASA FIRMS); ships/vessels/boats → ais-live-vessels; undersea/submarine cables → telegeography-submarine-cables; datacenters → local-datacenters; dams → local-dams; bikes/bike share → bikeshare; street traffic/congestion → traffic; traffic cameras → cctv; internet radio/stations → radio; ALPR/license plate readers/Flock cameras → alpr-cameras; Kenya river gauges/floods/river levels → kenya-river-gauges; Kenya county rainfall/rain forecast → kenya-county-rain; rainfall now/live rain/IMERG → nasa-imerg-rain; flood hotspots → kenya-flood-hotspots; matatus/matatu routes → kenya-matatu-routes.',
           $position: 1,
         },
       },
@@ -511,7 +511,7 @@ export const ACTION_DESCRIPTIONS = {
       properties: {
         layers: {
           description:
-            'Layers to query. fires/wildfires → local-firms; ships/vessels → ais-live-vessels.',
+            'Layers to query. fires/wildfires → local-firms; ships/vessels → ais-live-vessels; Kenya rivers/floods → kenya-river-gauges; Kenya county rainfall → kenya-county-rain.',
           $position: 2,
         },
         scope: {
@@ -532,7 +532,7 @@ export const ACTION_DESCRIPTIONS = {
         },
         filters: {
           description:
-            'Attribute predicates, ANDed. ALTITUDE IS METERS (40,000 ft = 12192). Fields: altitudeM, speedMps, military, onGround, aircraftClass, callsign, operator, routeOrigin, routeDestination, originCountry (flights); speedKts, shipType, destination (ships); frp, confidence (fires); magnitude, depthKm, place (earthquakes).',
+            'Attribute predicates, ANDed. ALTITUDE IS METERS (40,000 ft = 12192). Fields: altitudeM, speedMps, military, onGround, aircraftClass, callsign, operator, routeOrigin, routeDestination, originCountry (flights); speedKts, shipType, destination (ships); frp, confidence (fires); magnitude, depthKm, place (earthquakes); severity, river, county, peakRatio, peakM3s, currentM3s (river gauges); band, county, next7Mm, next3Mm, past7Mm (county rainfall).',
           $position: 1,
         },
         sortBy: {

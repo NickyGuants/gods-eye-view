@@ -84,6 +84,16 @@ export function localInfrastructureOverlayCopy(properties, layerId) {
     if (river && river.toLocaleLowerCase() !== title.toLocaleLowerCase()) {
       details.push(clampCardLine(river));
     }
+  } else if (layerId === 'kenya-flood-hotspots') {
+    const kind = firstClean([props.kind]);
+    const county = firstClean([props.county]);
+    const head = [kind, county].filter(Boolean).join(' · ');
+    if (head) details.push(clampCardLine(head));
+    const note = firstClean([props.note]);
+    if (note) details.push(clampCardLine(note));
+  } else if (layerId === 'kenya-matatu-routes') {
+    const lines = firstClean([props.lines]);
+    if (lines) details.push(clampCardLine(`Routes ${lines}`));
   }
 
   return { title, details };
@@ -1225,6 +1235,13 @@ function labelPriorityFromProperties(props, layerId) {
   if (props.output || tags['plant:output:electricity']) score += 120;
   if (layerId === 'local-dams') score += 80;
   if (layerId === 'local-datacenters') score += 60;
+  if (layerId === 'kenya-flood-hotspots') {
+    score += 100;
+    if (/KMD/i.test(String(props.kind || ''))) score += 60;
+  }
+  if (layerId === 'kenya-matatu-routes') {
+    score += Math.min(200, Number(props.lineCount) || 0) * 4;
+  }
   return score;
 }
 

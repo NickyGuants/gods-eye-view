@@ -56,6 +56,9 @@ How to read this:
 | **Radio Browser**                                                     | Geolocated internet-radio station directory and station-level tags                                                                  | Public-domain directory data under PDDL 1.0; individual broadcaster stream terms apply                                                                                                                                                                                                                                                                | "Radio Browser" plus a link to the selected broadcaster                                                                                     |
 | **Re:Earth Terrain** (Mapterhorn)                                     | Terrain (keyless globe stacks — OSM etc. — + `/api/terrain/heights` ellipsoidal-height lookups)                                     | Terrain mesh: CC BY 4.0; geoid: EGM2008 (NGA, public domain)                                                                                                                                                                                                                                                                                          | "Terrain (keyless globe stacks): Re:Earth Terrain / Mapterhorn (CC BY 4.0) / EGM2008 (NGA)"                                                 |
 | **OSRM on the FOSSGIS routing servers** (`routing.openstreetmap.de`) | Street-following routes for the Directions layer and voice route annotations, via `/api/route` | [FOSSGIS routing usage policy](https://routing.openstreetmap.de/about.html): "Display the required attribution and display a link to 'fix the map'", "Use a valid user agent and, if applicable, a correct referrer", "One request per second max", "No scraping, no heavy usage". The full policy is the German [FOSSGIS Nutzungsbedingungen](https://www.fossgis.de/arbeitsgruppen/osm-server/nutzungsbedingungen/); FOSSGIS also states that the server may be embedded in your own pages but "eine gewerbliche Nutzung ist nur mit Einschränkungen erlaubt" (commercial use only with restrictions). Route data derives from OpenStreetMap (ODbL 1.0) | "Routing: OSRM on the FOSSGIS servers" + "© OpenStreetMap contributors" + a "fix the map" link — shown in the Data attribution popover |
+| **Open-Meteo Flood API** | Kenya river gauges layer: GloFAS v4 river discharge (30 past days, 10 forecast days) at 24 Kenyan river sites, fetched directly from the browser, no key | [CC BY 4.0 data licence](https://open-meteo.com/en/licence); non-commercial free tier (about 10,000 calls/day); commercial use needs an Open-Meteo API subscription | Linked "Flood data by Open-Meteo.com" in the Data attribution popover; GloFAS is Copernicus Emergency Management Service data |
+| **Open-Meteo Forecast API** | Kenya county rainfall layer: daily precipitation sum and probability for 47 county centroids, fetched directly from the browser, no key | [CC BY 4.0 data licence](https://open-meteo.com/en/licence); same tier rules as above | Linked "Weather data by Open-Meteo.com" in the Data attribution popover |
+| **NASA GIBS (GPM IMERG)** | Rainfall Now overlay: half-hourly precipitation-rate imagery tiles via WMTS, no key | NASA open data; [GIBS usage](https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api) asks for attribution and reasonable request rates | "NASA EOSDIS GIBS · GPM IMERG" credit in the popover and on the imagery layer |
 
 ### Notes on the live sources
 
@@ -88,6 +91,15 @@ How to read this:
 ---
 
 ## Bundled snapshots
+
+### Kenya (added for the El Niño 2026 fork)
+
+| File | Source and modifications | License |
+| --- | --- | --- |
+| `src/data/local_data/kenya/counties.json` | geoBoundaries gbOpen KEN ADM1 (47 counties), simplified to about 1 km, holes dropped, area centroid of the largest polygon added per county; `Tharaka` renamed `Tharaka-Nithi` | [CC BY 4.0](https://www.geoboundaries.org) |
+| `src/data/local_data/kenya/matatu_routes.geojsonl` | Digital Matatus GTFS (2019 survey; University of Nairobi C4DLab, Columbia CSUD, MIT Civic Data Design Lab) shapes for 136 routes in both directions, plus 175 termini derived from stops.txt, coordinates rounded to 5 decimals | Digital Matatus publishes the GTFS openly for reuse with attribution; confirm the current licence text on digitalmatatus.com before redistributing commercially |
+| `src/data/local_data/kenya/flood_hotspots.geojsonl` | 33 points compiled by hand from the Kenya Meteorological Department El Niño advisory (Aug 2026) and public reporting on the 1997-98, 2019, 2023-24 and March 2026 flood seasons; locations marked `approximate` where a settlement, not a coordinate, was named | MIT (this repository); the underlying facts are public reporting |
+
 
 Static datasets shipped in the repo for an out-of-the-box experience. **None are MIT** — each keeps its own license (see the carve-out in [LICENSE](LICENSE)). Each folder also has its own provenance README.
 

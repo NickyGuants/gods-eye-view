@@ -46,6 +46,8 @@ const REGISTERED = new Set([
   'cctv', 'radio', 'bikeshare', 'ais-live-vessels', 'military-installations',
   'military-awareness', 'local-datacenters', 'local-dams',
   'telegeography-submarine-cables', 'local-firms',
+  'kenya-river-gauges', 'kenya-county-rain', 'nasa-imerg-rain',
+  'kenya-flood-hotspots', 'kenya-matatu-routes',
 ]);
 
 test('a shot only reconciles the layers it declares', () => {

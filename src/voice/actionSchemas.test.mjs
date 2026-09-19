@@ -16,12 +16,15 @@ const stable = (value) =>
       : value;
 
 test('the complete Realtime tool payload retains its pre-extraction contract and wording', () => {
+  // Re-pinned for the Kenya El Niño layers: the two layer enums and the
+  // analyst layer enum gained kenya-*/nasa-imerg-rain values, and two
+  // descriptions name the new layers. No tool, field or type changed.
   const digest = createHash('sha256')
     .update(JSON.stringify(stable(GEV_REALTIME_TOOLS)))
     .digest('hex');
   assert.equal(
     digest,
-    '956381c3456d3644ed7c9cda72910dc68a34d9191e0b3e414ee200c348245214',
+    '5172c00066193c9ba89d5032c302bae54b2dc66875a4f80b44f5d31b6ef9dc58',
   );
 });
 

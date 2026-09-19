@@ -61,6 +61,16 @@ export const ANALYST_LAYERS = {
     text: ['place'],
     flags: [],
   },
+  'kenya-river-gauges': {
+    numeric: ['currentM3s', 'baselineM3s', 'peakM3s', 'peakRatio'],
+    text: ['name', 'river', 'county', 'severity', 'peakDate'],
+    flags: [],
+  },
+  'kenya-county-rain': {
+    numeric: ['next7Mm', 'next3Mm', 'past7Mm', 'wettestMm'],
+    text: ['county', 'band', 'wettestDay'],
+    flags: [],
+  },
 };
 
 const EARTH_R_KM = 6371;

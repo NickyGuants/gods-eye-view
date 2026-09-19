@@ -743,5 +743,11 @@
   "src/director/interactions/interactions.test.mjs",
   "scripts/qa-director-interactions.mjs",
   "src/director/sharing/sharing.test.mjs",
-  "scripts/qa-director-sharing.mjs"
+  "scripts/qa-director-sharing.mjs",
+  "src/layers/kenyaRiverGauges/records.test.mjs",
+  "src/layers/kenyaRiverGauges/source.test.mjs",
+  "src/layers/kenyaCountyRain/source.test.mjs",
+  "src/layers/nasaImerg/model.test.mjs",
+  "scripts/qa-kenya.mjs",
+  "KENYA.md"
 ]

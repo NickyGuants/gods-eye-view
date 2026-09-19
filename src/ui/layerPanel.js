@@ -44,6 +44,16 @@ const PANEL_GROUPS = [
     ids: ['rocket-launches', 'earthquakes', 'local-firms'],
   },
   {
+    label: 'Kenya · El Niño 2026',
+    ids: [
+      'kenya-river-gauges',
+      'kenya-county-rain',
+      'nasa-imerg-rain',
+      'kenya-flood-hotspots',
+      'kenya-matatu-routes',
+    ],
+  },
+  {
     label: 'Utilities',
     ids: ['directions', 'radio'],
   },
@@ -61,6 +71,11 @@ const PANEL_LABELS = {
   'alpr-cameras': 'Mapped ALPR Cameras',
   'local-datacenters': 'Data Centers',
   'local-firms': 'Active Fires',
+  'kenya-river-gauges': 'River Gauges',
+  'kenya-county-rain': 'County Rainfall (7d)',
+  'nasa-imerg-rain': 'Rainfall Now',
+  'kenya-flood-hotspots': 'Flood Hotspots',
+  'kenya-matatu-routes': 'Matatu Routes',
 };
 
 function panelLabel(layer) {

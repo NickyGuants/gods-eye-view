@@ -111,6 +111,45 @@ export const DATA_CREDITS = [
       '(CC BY 4.0)',
   },
   {
+    key: 'open-meteo-flood',
+    html:
+      'Kenya river gauges: ' +
+      '<a href="https://open-meteo.com/en/licence" target="_blank" rel="noopener">Flood data by Open-Meteo.com</a> ' +
+      '(CC BY 4.0), derived from Copernicus GloFAS v4',
+  },
+  {
+    key: 'open-meteo-kenya-rain',
+    html:
+      'Kenya county rainfall: ' +
+      '<a href="https://open-meteo.com/en/licence" target="_blank" rel="noopener">Weather data by Open-Meteo.com</a> ' +
+      '(CC BY 4.0)',
+  },
+  {
+    key: 'nasa-gibs-imerg',
+    html:
+      'Rainfall now: ' +
+      '<a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api" target="_blank" rel="noopener">NASA EOSDIS GIBS</a> ' +
+      '· GPM IMERG precipitation rate (NASA open data)',
+  },
+  {
+    key: 'geoboundaries-ken',
+    html:
+      'Kenya counties: ' +
+      '<a href="https://www.geoboundaries.org" target="_blank" rel="noopener">geoBoundaries gbOpen KEN ADM1</a> ' +
+      '(CC BY 4.0)',
+  },
+  {
+    key: 'digital-matatus',
+    html:
+      'Nairobi matatu routes: ' +
+      '<a href="https://www.digitalmatatus.com/" target="_blank" rel="noopener">Digital Matatus GTFS</a> ' +
+      '(University of Nairobi C4DLab, Columbia CSUD, MIT Civic Data Design Lab; 2019 survey)',
+  },
+  {
+    key: 'kenya-flood-hotspots',
+    html: 'Kenya flood hotspots: compiled from Kenya Meteorological Department El Niño advisories (Aug 2026) and public reporting on past flood seasons; approximate locations',
+  },
+  {
     key: 'google-news-rss',
     html:
       'Cockpit regional headlines: ' +

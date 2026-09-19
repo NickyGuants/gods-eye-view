@@ -22,6 +22,10 @@ import { createInfrastructureLayers } from '../data/infrastructure.js';
 import { localGeoJsonServices } from './localGeojsonServices.js';
 import { createBhoteKoshiEventLayer } from '../data/bhoteKoshiEvent.js';
 import { createBhoteKoshiLocatorLayer } from '../data/bhoteKoshiLocator.js';
+import { createApplicationKenyaRiverGauges } from './layers/kenyaRiverGauges.js';
+import { createApplicationKenyaCountyRain } from './layers/kenyaCountyRain.js';
+import { createApplicationNasaImerg } from './layers/nasaImerg.js';
+import { createKenyaLocalLayers } from '../data/kenyaLocal.js';
 
 const SOURCE_METHODS = Object.freeze({
   flights: ['getSnapshot'],
@@ -44,6 +48,8 @@ const SOURCE_METHODS = Object.freeze({
   firms: ['getSnapshot'],
   earthquakes: ['getSnapshot'],
   cables: ['fetch'],
+  kenyaRiverGauges: ['getSnapshot'],
+  kenyaCountyRain: ['getSnapshot'],
 });
 
 /** Construct the current catalog without choosing any source provider.
@@ -130,6 +136,10 @@ export function createApplicationCatalog({
         }),
         ...createInfrastructureLayers(localGeoJsonServices),
         createApplicationCables({ source: sources.cables }),
+        createApplicationKenyaRiverGauges({ source: sources.kenyaRiverGauges }),
+        createApplicationKenyaCountyRain({ source: sources.kenyaCountyRain }),
+        createApplicationNasaImerg(),
+        ...createKenyaLocalLayers(localGeoJsonServices),
         createApplicationFirms({
           surface,
           id: 'local-firms',
