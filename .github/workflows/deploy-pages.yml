@@ -1,0 +1,81 @@
+name: Deploy to GitHub Pages
+
+# Keyless static build of the Kenya El Niño 2026 fork. No Cesium ion, Google,
+# OpenAI or TomTom keys: the Kenya layers, the Esri/OSM basemaps and the
+# Re:Earth terrain fallback all work without them; the voice agent and the
+# keyed basemaps stay off.
+
+on:
+  push:
+    branches: [kenya-el-nino-2026]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  # Project site: https://<owner>.github.io/<repo>/
+  PAGES_BASE: /${{ github.event.repository.name }}/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24.14.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build with the Pages base path
+        run: npx vite build --base="$PAGES_BASE"
+
+      - name: Move Cesium static assets under the served root
+        # vite-plugin-cesium copies Cesium.js, Workers, Assets and Widgets to
+        # dist/<base>/cesium/ while the HTML references <base>/cesium/. Pages
+        # serves dist/ at <base>, so the folder has to sit at dist/cesium/.
+        run: |
+          set -euo pipefail
+          nested="dist${PAGES_BASE%/}/cesium"
+          if [ -d "$nested" ]; then
+            rm -rf dist/cesium
+            mv "$nested" dist/cesium
+            rmdir "dist${PAGES_BASE%/}" 2>/dev/null || true
+          fi
+          test -f dist/cesium/Cesium.js
+          test -f dist/index.html
+          touch dist/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

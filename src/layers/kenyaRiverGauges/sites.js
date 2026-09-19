@@ -66,11 +66,13 @@ export const KENYA_GAUGE_SITES = Object.freeze(
     },
     {
       id: 'kuja-migori',
-      name: 'Kuja (Gucha) at Migori',
+      name: 'Kuja (Gucha) at Nyatike',
       river: 'Kuja',
       county: 'Migori',
-      lat: -1.063,
-      lon: 34.473,
+      // Lower Kuja main stem west of the Migori confluence, not Migori town
+      // (which sits on the small Migori tributary and reads dry in GloFAS).
+      lat: -0.935,
+      lon: 34.195,
       note: 'Lower Kuja floods Nyatike before Lake Victoria.',
     },
     {
