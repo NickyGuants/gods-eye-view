@@ -11,6 +11,8 @@ import puppeteer from 'puppeteer';
 
 const LIVE = process.env.QA_KENYA_LIVE === '1';
 const BASE = process.env.QA_BASE_URL || 'http://localhost:4173';
+/** The site under test is always allowed through the interception. */
+const BASE_HOST = new URL(BASE).hostname;
 const TINY_PNG = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
   'base64',
@@ -185,7 +187,11 @@ page.on('request', (request) => {
     });
   }
   if (url.hostname === 'terrain.reearth.land') return request.continue();
-  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1')
+  if (
+    url.hostname === 'localhost' ||
+    url.hostname === '127.0.0.1' ||
+    url.hostname === BASE_HOST
+  )
     return request.continue();
   // Everything else (basemaps, ion, google) is offline in this proof.
   return request.abort();
